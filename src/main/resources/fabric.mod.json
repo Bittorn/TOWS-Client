@@ -1,19 +1,18 @@
 {
 	"schemaVersion": 1,
 	"id": "tows-client",
-	"version": "${version}",
+	"version": "0.0.1",
 	"name": "Tales of Wayward Stars Client",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Client mod for the Tales of Wayward Stars adventure experience.",
 	"authors": [
-		"Me!"
+		"Bittorn"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/Bittorn/TOWS-Client"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/tows-client/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
 		"main": [
 			"net.bittorn.towsclient.TalesOfWaywardStarsClient"
@@ -36,6 +35,6 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"continuity": "*"
 	}
 }
