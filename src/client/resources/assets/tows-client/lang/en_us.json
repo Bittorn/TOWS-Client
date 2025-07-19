@@ -1,0 +1,7 @@
+{
+  "config.towsclient.title": "TOWS Configuration",
+  "config.towsclient.configure": "Configure",
+
+  "key.category.towsclient": "TOWS",
+  "key.towsclient.interact": "Interact"
+}

@@ -16,7 +16,7 @@
 	"environment": "client",
 	"entrypoints": {
 		"client": [
-			"net.bittorn.towsclient.TalesOfWaywardStarsClient"
+			"net.bittorn.towsclient.TOWSClient"
 		]
 	},
 	"mixins": [
@@ -26,9 +26,12 @@
 		"fabricloader": ">=0.16.14",
 		"minecraft": "~1.21.4",
 		"java": ">=21",
-		"fabric-api": "*"
+		"fabric-api": "*",
+
+		"fabric-key-binding-api-v1": "*"
 	},
 	"suggests": {
-		"continuity": "*"
+		"modmenu": "*",
+		"cloth-config2": "*"
 	}
 }
