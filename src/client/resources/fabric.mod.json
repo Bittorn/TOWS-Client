@@ -8,25 +8,19 @@
 		"Bittorn"
 	],
 	"contact": {
+		"issues": "https://github.com/Bittorn/TOWS-Client/issues",
 		"sources": "https://github.com/Bittorn/TOWS-Client"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/tows-client/icon.png",
 	"environment": "client",
 	"entrypoints": {
-		"main": [
-			"net.bittorn.towsclient.TalesOfWaywardStarsClient"
-		],
 		"client": [
-			"net.bittorn.towsclient.TalesOfWaywardStarsClientClient"
+			"net.bittorn.towsclient.TalesOfWaywardStarsClient"
 		]
 	},
 	"mixins": [
-		"tows-client.mixins.json",
-		{
-			"config": "tows-client.client.mixins.json",
-			"environment": "client"
-		}
+		"tows-client.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.14",
