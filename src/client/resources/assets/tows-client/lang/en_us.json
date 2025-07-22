@@ -1,6 +1,12 @@
 {
-  "config.towsclient.title": "TOWS Configuration",
-  "config.towsclient.configure": "Configure",
+  "modmenu.nameTranslation.towsclient": "Tales of Wayward Stars Client",
+  "modmenu.descriptionTranslation.towsclient": "Client mod for the Tales of Wayward Stars adventure experience.",
+  "modmenu.summaryTranslation.towsclient": "Client mod for the Tales of Wayward Stars adventure experience.",
+
+  "title.towsclient": "Tales of Wayward Stars",
+  "title.towsclient.client": "TOWS Client",
+
+  "config.towsclient.title": "TOWS Client Configuration",
 
   "key.category.towsclient": "Tales of Wayward Stars",
   "key.towsclient.interact": "Interact"

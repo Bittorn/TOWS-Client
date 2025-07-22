@@ -3,7 +3,7 @@
 	"package": "net.bittorn.towsclient.mixin.client",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
-		"ExampleClientMixin"
+      "ClientLoadMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

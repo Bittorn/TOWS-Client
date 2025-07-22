@@ -1,13 +1,11 @@
 package net.bittorn.towsclient;
 
-import net.bittorn.towsclient.dialog.TOWSClientDialogScreen;
-import net.bittorn.towsclient.dialog.TOWSClientDialogScreenHandler;
+import net.bittorn.towsclient.config.TOWSConfig;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.resource.ResourceManager;
@@ -31,8 +29,8 @@ public class TOWSClient implements ClientModInitializer {
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			while (interactBinding.wasPressed()) {
-				//MinecraftClient.getInstance().setScreen(new TOWSClientDialogScreen());
-				client.player.sendMessage(Text.literal("Interact was pressed!"), false); // placeholder logic
+                assert client.player != null; // Prevent warnings
+                client.player.sendMessage(Text.literal("Interact was pressed!"), false); // placeholder logic
 			}
 		});
 
@@ -53,7 +51,7 @@ public class TOWSClient implements ClientModInitializer {
 						// Remember to close resource stream after processing.
 						// Forgetting to do this is an easy way to end up with a resource leak.
 					} catch (Exception e) {
-						logErrorLoading("Error occurred while loading resource JSON " + id.toString());
+						logError("Error occurred while loading resource JSON " + id.toString());
 					}
 				}
 			}
@@ -66,16 +64,16 @@ public class TOWSClient implements ClientModInitializer {
 	}
 
 	// Logs a warning line if enabled in config.
-	public static void logWarnLoading(String message) {
-//		if (CITResewnConfig.INSTANCE.mute_warns)
-//			return;
+	public static void logWarn(String message) {
+		if (TOWSConfig.INSTANCE.mute_warns)
+			return;
         LOG.error("[TOWSClient] {}", message);
 	}
 
 	// Logs an error line if enabled in config.
-	public static void logErrorLoading(String message) {
-//		if (CITResewnConfig.INSTANCE.mute_errors)
-//			return;
+	public static void logError(String message) {
+		if (TOWSConfig.INSTANCE.mute_errors)
+			return;
         LOG.error("{TOWSClient} {}", message);
 	}
 }
