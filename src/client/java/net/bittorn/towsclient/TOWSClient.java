@@ -1,38 +1,24 @@
 package net.bittorn.towsclient;
 
-import net.bittorn.towsclient.config.TOWSConfig;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.lwjgl.glfw.GLFW;
 
 import java.io.InputStream;
 
 public class TOWSClient implements ClientModInitializer {
 
-	public static final Logger LOG = LogManager.getLogger("TOWSClient");
+	public static final String MOD_ID = "towsclient";
+	public static final Logger LOG = LogManager.getLogger(MOD_ID);
 
 	@Override
 	public void onInitializeClient() {
-		// Keybinds
-		KeyBinding interactBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.towsclient.interact", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, "key.category.towsclient"));
-
-		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-			while (interactBinding.wasPressed()) {
-                assert client.player != null; // Prevent warnings
-                client.player.sendMessage(Text.literal("Interact was pressed!"), false); // placeholder logic
-			}
-		});
+		TOWSClientKeybinds.register();
 
 		// Resources
 		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
@@ -65,15 +51,11 @@ public class TOWSClient implements ClientModInitializer {
 
 	// Logs a warning line if enabled in config.
 	public static void logWarn(String message) {
-		if (TOWSConfig.INSTANCE.mute_warns)
-			return;
-        LOG.error("[TOWSClient] {}", message);
+        LOG.warn("[TOWSClient] {}", message);
 	}
 
 	// Logs an error line if enabled in config.
 	public static void logError(String message) {
-		if (TOWSConfig.INSTANCE.mute_errors)
-			return;
         LOG.error("{TOWSClient} {}", message);
 	}
 }

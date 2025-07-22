@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
-	"id": "tows-client",
-	"version": "${mod_version}",
+	"id": "towsclient",
+	"version": "${version}",
 	"name": "Tales of Wayward Stars Client",
 	"description": "Client mod for the Tales of Wayward Stars adventure experience.",
 	"authors": [
@@ -12,16 +12,18 @@
 		"sources": "https://github.com/Bittorn/TOWS-Client"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/tows-client/icon.png",
+	"icon": "assets/towsclient/icon.png",
 	"environment": "client",
 	"entrypoints": {
 		"client": [
 			"net.bittorn.towsclient.TOWSClient"
 		],
-		"modmenu": ["net.bittorn.towsclient.api.ModMenuApiImpl"]
+		"modmenu": [
+			"net.bittorn.towsclient.api.ModMenuApiImpl"
+		]
 	},
 	"mixins": [
-		"tows-client.mixins.json"
+		"towsclient.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.14",

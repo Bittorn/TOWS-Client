@@ -6,10 +6,7 @@ import net.bittorn.towsclient.TOWSClient;
 import net.fabricmc.loader.api.FabricLoader;
 import org.apache.commons.io.IOUtils;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.Reader;
+import java.io.*;
 
 // Contains runtime representation of TOWS config, encoded using GSON
 // Most, if not all, of this code is taken from CITResewn
@@ -25,10 +22,6 @@ public class TOWSConfig {
 
     // Active instance of the current config
     public static final TOWSConfig INSTANCE = read();
-
-    // Toggles for muting warning and error logs
-    public final boolean mute_warns = false;
-    public final boolean mute_errors = false;
 
     // Reads the stored config
     private static TOWSConfig read() {
