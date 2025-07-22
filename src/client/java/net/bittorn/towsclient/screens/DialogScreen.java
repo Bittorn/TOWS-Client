@@ -41,7 +41,7 @@ public class DialogScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
 
-        assert this.client != null;
+        assert this.client != null; // stop warnings
 
         int imageWidth = 512;
         int imageHeight = 128;

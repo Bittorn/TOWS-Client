@@ -9,9 +9,9 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
-public class TOWSClientConfigScreen extends Screen {
+public class ConfigScreen extends Screen {
     public Screen parent;
-    public TOWSClientConfigScreen(Text title, Screen parent) {
+    public ConfigScreen(Text title, Screen parent) {
         super(title);
         this.parent = parent;
     }

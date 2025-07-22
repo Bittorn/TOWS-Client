@@ -1,11 +1,7 @@
 package net.bittorn.towsclient;
 
+import net.bittorn.towsclient.data.ResourceManager;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.resource.ResourceType;
-import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,29 +15,7 @@ public class TOWSClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		TOWSClientKeybinds.register();
-
-		// Resources
-		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-			@Override
-			public Identifier getFabricId() {
-				return Identifier.of("towsclient", "resources");
-			}
-
-			@Override
-			public void reload(ResourceManager manager) {
-				// Clear caches here
-
-				for (Identifier id : manager.findResources("resource_folder", path -> path.toString().endsWith(".json")).keySet()) {
-					try (InputStream stream = manager.getResourceOrThrow(id).getInputStream()) {
-						// Consume the stream
-						// Remember to close resource stream after processing.
-						// Forgetting to do this is an easy way to end up with a resource leak.
-					} catch (Exception e) {
-						logError("Error occurred while loading resource JSON " + id.toString());
-					}
-				}
-			}
-		});
+		ResourceManager.register();
 	}
 
 	// Logs an info line.

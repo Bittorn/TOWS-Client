@@ -2,7 +2,7 @@ package net.bittorn.towsclient.api;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
-import net.bittorn.towsclient.screens.TOWSClientConfigScreen;
+import net.bittorn.towsclient.screens.ConfigScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
@@ -13,7 +13,7 @@ public class ModMenuApiImpl implements ModMenuApi {
         return new ConfigScreenFactory<Screen>() {
             @Override
             public Screen create(Screen parent) {
-                return new TOWSClientConfigScreen(Text.empty(), MinecraftClient.getInstance().currentScreen);
+                return new ConfigScreen(Text.empty(), MinecraftClient.getInstance().currentScreen);
             }
         };
     }
