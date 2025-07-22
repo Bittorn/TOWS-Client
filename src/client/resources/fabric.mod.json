@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "towsclient",
-	"version": "${version}",
+	"version": "0.0.1",
 	"name": "Tales of Wayward Stars Client",
 	"description": "Client mod for the Tales of Wayward Stars adventure experience.",
 	"authors": [
