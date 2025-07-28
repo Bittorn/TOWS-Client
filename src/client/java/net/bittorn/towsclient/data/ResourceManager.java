@@ -13,7 +13,7 @@ public class ResourceManager {
         ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
             @Override
             public Identifier getFabricId() {
-                return Identifier.of(TOWSClient.MOD_ID, "resources");
+                return Identifier.of(TOWSClient.MOD_ID, "mod_resources");
             }
 
             @Override
