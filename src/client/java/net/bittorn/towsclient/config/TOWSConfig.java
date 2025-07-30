@@ -49,7 +49,6 @@ public class TOWSConfig {
 
             gson.toJson(gson.toJsonTree(this, TOWSConfig.class), writer);
         } catch (Exception e) {
-            TOWSClient.logError("Couldn't save config");
             e.printStackTrace(); // again, should be replaced with more robust logging
             throw new RuntimeException(e);
         } finally {

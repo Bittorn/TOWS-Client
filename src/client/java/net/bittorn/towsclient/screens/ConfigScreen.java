@@ -1,5 +1,6 @@
 package net.bittorn.towsclient.screens;
 
+import net.bittorn.towsclient.TOWSClient;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
@@ -7,6 +8,8 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+
+import java.util.regex.Pattern;
 
 @Environment(EnvType.CLIENT)
 public class ConfigScreen extends Screen {
@@ -38,19 +41,28 @@ public class ConfigScreen extends Screen {
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
-        // Minecraft doesn't have a "label" widget, so we'll have to draw our own text.
-        // We'll subtract the font height from the Y position to make the text appear above the button.
-        // Subtracting an extra 10 pixels will give the text some padding.
-        // textRenderer, text, x, y, color, hasShadow
+        // Minecraft doesn't have a "label" widget, so we have to draw our own text.
         assert this.client != null; // Get rid of dumbass warnings
         MutableText configTitle = Text.translatable("config.towsclient.title");
         context.drawText(this.textRenderer, configTitle,
                 this.client.getWindow().getScaledWidth() / 2 - this.textRenderer.getWidth(configTitle) / 2, 20,
                 0xFFFFFFFF, true);
 
-        context.drawText(this.textRenderer, "Nothing to configure yet!",
-                this.client.getWindow().getScaledWidth() / 2 - this.textRenderer.getWidth(configTitle) / 2,
-                this.client.getWindow().getScaledHeight() / 2,
+        String ip = (TOWSClient.serverAddress != null) ? TOWSClient.serverAddress.toString() : "None";
+
+        String detectedIP = "Current detected IP address: " + ip;
+
+        context.drawText(this.textRenderer, detectedIP,
+                this.client.getWindow().getScaledWidth() / 2 - this.textRenderer.getWidth(detectedIP) / 2,
+                60,
+                0xFFFFFFFF, true);
+
+        String REGEX = "\\S+\\.callmecarson\\.live\\S*";
+        String ipMatch = "IP " + (Pattern.matches(REGEX, ip) ? "matches" : "does not match");
+
+        context.drawText(this.textRenderer, ipMatch,
+                this.client.getWindow().getScaledWidth() / 2 - this.textRenderer.getWidth(ipMatch) / 2,
+                80,
                 0xFFFFFFFF, true);
     }
 }
