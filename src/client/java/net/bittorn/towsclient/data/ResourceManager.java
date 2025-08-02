@@ -25,7 +25,7 @@ public class ResourceManager {
                         // Remember to close resource stream after processing.
                         // Forgetting to do this is an easy way to end up with a resource leak.
                     } catch (Exception e) {
-                        TOWSClient.LOG.error("Error occurred while loading resource JSON {}", id.toString());
+                        TOWSClient.LOGGER.error("Error occurred while loading resource JSON {}", id.toString());
                     }
                 }
             }

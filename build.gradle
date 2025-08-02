@@ -21,6 +21,8 @@ repositories {
 		name = "Terraformers"
 		url = "https://maven.terraformersmc.com/"
 	}
+
+	maven { url 'https://maven.wispforest.io/releases/' }
 }
 
 loom {
@@ -42,9 +44,17 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Gson (might not be needed but whatever)
-	implementation 'com.google.code.gson:gson:2.13.1'
+	implementation "com.google.code.gson:gson:${project.gson_version}"
 
-	// Fabric API. This is technically optional, but you probably want it anyway.
+	// Java implementation of Ink dialog engine
+	implementation "com.bladecoder.ink:blade-ink:${project.ink_version}"
+
+	// oωo (owo-lib)
+	modImplementation "io.wispforest:owo-lib:${project.owo_version}"
+	include "io.wispforest:owo-sentinel:${project.owo_version}"
+
+
+	// Fabric API
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// Mod Menu support

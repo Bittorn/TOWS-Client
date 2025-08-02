@@ -1,8 +1,8 @@
 package net.bittorn.towsclient.config;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonWriter;
-import net.bittorn.towsclient.TOWSClient;
 import net.fabricmc.loader.api.FabricLoader;
 import org.apache.commons.io.IOUtils;
 
@@ -41,11 +41,10 @@ public class TOWSConfig {
 
     // Saves this config to file
     private TOWSConfig write() {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonWriter writer = null;
         try {
             writer = gson.newJsonWriter(new FileWriter(FILE));
-            writer.setIndent("    ");
 
             gson.toJson(gson.toJsonTree(this, TOWSConfig.class), writer);
         } catch (Exception e) {

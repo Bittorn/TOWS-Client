@@ -59,6 +59,7 @@ public class ConfigScreen extends Screen {
 
         String REGEX = "\\S+\\.callmecarson\\.live\\S*";
         String ipMatch = "IP " + (Pattern.matches(REGEX, ip) ? "matches" : "does not match");
+        if (Pattern.matches("local\\S*", ip)) ipMatch = "Running on local world";
 
         context.drawText(this.textRenderer, ipMatch,
                 this.client.getWindow().getScaledWidth() / 2 - this.textRenderer.getWidth(ipMatch) / 2,

@@ -10,7 +10,7 @@ import java.net.SocketAddress;
 public class TOWSClient implements ClientModInitializer {
 
 	public static final String MOD_ID = "towsclient";
-	public static final Logger LOG = LogManager.getLogger(MOD_ID);
+	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
 	public static SocketAddress serverAddress = null;
 

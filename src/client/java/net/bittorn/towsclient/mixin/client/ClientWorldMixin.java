@@ -4,11 +4,9 @@ import net.bittorn.towsclient.TOWSClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.render.WorldRenderer;
-import net.minecraft.client.toast.SystemToast;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -17,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.net.SocketAddress;
-import java.util.regex.Pattern;
 
 @Mixin(ClientWorld.class)
 public class ClientWorldMixin {
@@ -29,7 +26,7 @@ public class ClientWorldMixin {
     ) {
         SocketAddress newAddress = networkHandler.getConnection().getAddress();
 
-        TOWSClient.LOG.debug("Setting IP address to {}", newAddress);
+        TOWSClient.LOGGER.info("Setting IP address to {}", newAddress);
         TOWSClient.serverAddress = newAddress;
     }
 }
