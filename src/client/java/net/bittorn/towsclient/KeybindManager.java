@@ -15,7 +15,6 @@ public class KeybindManager {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (interactBinding.wasPressed()) {
-//                client.player.sendMessage(Text.literal("Interact was pressed!"), true); // placeholder logic
                 MinecraftClient.getInstance().setScreen(new DialogScreen(Text.empty()));
             }
         });

@@ -17,9 +17,6 @@
 	"entrypoints": {
 		"client": [
 			"net.bittorn.towsclient.TOWSClient"
-		],
-		"modmenu": [
-			"net.bittorn.towsclient.api.ModMenuApiImpl"
 		]
 	},
 	"mixins": [

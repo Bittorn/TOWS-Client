@@ -6,7 +6,14 @@
   "title.towsclient": "Tales of Wayward Stars",
   "title.towsclient.client": "TOWS Client",
 
-  "config.towsclient.title": "TOWS Client Configuration",
+  "text.config.towsconfig.title": "Tales of Wayward Stars Client Config",
+
+  "text.config.towsconfig.option.enabled": "Enable mod",
+  "text.config.towsconfig.option.enabled.tooltip": "Whether TOWSClient should be enabled\nChanging this will require a relog",
+  "text.config.towsconfig.option.serverIP": "Server IP",
+  "text.config.towsconfig.option.serverIP.tooltip": "Server IP address to be ran on\nUse '*' for wildcards/subdomains",
+  "text.config.towsconfig.option.enableLocally": "Enable on local worlds",
+  "text.config.towsconfig.option.enableLocally.tooltip": "Whether TOWSClient should be enabled on local worlds\nUseful for playing privately",
 
   "key.category.towsclient": "Tales of Wayward Stars",
   "key.towsclient.interact": "Interact"

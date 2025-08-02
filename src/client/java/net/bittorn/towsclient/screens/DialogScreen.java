@@ -9,6 +9,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.awt.*;
+import java.util.regex.Pattern;
 
 public class DialogScreen extends Screen {
     public static final Identifier DIALOG_BOX_TEXTURE = Identifier.of(TOWSClient.MOD_ID, "textures/gui/dialog/dialog_box_gui.png");
@@ -49,7 +50,13 @@ public class DialogScreen extends Screen {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) - 24;
 
-        String dialog = "This is some placeholder dialog!";
+        String regexConvert = TOWSClient.CONFIG.serverIP().replaceAll("\\.", "\\.").replace("*", "\\S+");
+        String REGEX = regexConvert + "\\S*";
+
+        String ipMatch = "IP " + (Pattern.matches(REGEX, TOWSClient.serverAddress.toString()) ? "matches" : "does not match");
+        boolean isLocal = Pattern.matches("local\\S*", TOWSClient.serverAddress.toString());
+
+        String dialog = isLocal ? "Server is local" : ipMatch;
 
         context.drawTexture(RenderLayer::getGuiTextured, DIALOG_BOX_TEXTURE, x, y, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight, new Color(255, 255, 255, 255).hashCode());
 
