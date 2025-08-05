@@ -13,6 +13,7 @@ public class StoryManager {
     public Story loadStory(String filename) {
         InputStream systemResourceAsStream = ClassLoader.getSystemResourceAsStream(filename);
 
+        // try-with-resources !!
         try (BufferedReader br = new BufferedReader(
                 new InputStreamReader(Objects.requireNonNull(systemResourceAsStream), StandardCharsets.UTF_8))) {
             StringBuilder sb = new StringBuilder();
