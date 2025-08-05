@@ -44,7 +44,7 @@ public class DialogScreen extends Screen {
 
         assert this.client != null; // stop warnings
 
-        int imageWidth = 512;
+        int imageWidth = 384;
         int imageHeight = 128;
 
         int x = (width - imageWidth) / 2;
@@ -53,8 +53,8 @@ public class DialogScreen extends Screen {
         String regexConvert = TOWSClient.CONFIG.serverIP().replaceAll("\\.", "\\.").replace("*", "\\S+");
         String REGEX = regexConvert + "\\S*";
 
-        String ipMatch = "IP " + (Pattern.matches(REGEX, TOWSClient.serverAddress.toString()) ? "matches" : "does not match");
-        boolean isLocal = Pattern.matches("local\\S*", TOWSClient.serverAddress.toString());
+        String ipMatch = "IP " + (Pattern.matches(REGEX, TOWSClient.SERVER_ADDRESS.toString()) ? "matches" : "does not match");
+        boolean isLocal = Pattern.matches("local\\S*", TOWSClient.SERVER_ADDRESS.toString());
 
         String dialog = isLocal ? "Server is local" : ipMatch;
 

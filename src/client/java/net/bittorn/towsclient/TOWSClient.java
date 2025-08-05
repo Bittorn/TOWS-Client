@@ -1,7 +1,6 @@
 package net.bittorn.towsclient;
 
 import net.bittorn.towsclient.config.TOWSConfig;
-import net.bittorn.towsclient.data.ResourceManager;
 import net.fabricmc.api.ClientModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,11 +14,10 @@ public class TOWSClient implements ClientModInitializer {
 
 	public static final TOWSConfig CONFIG = TOWSConfig.createAndLoad();
 
-	public static SocketAddress serverAddress;
+	public static SocketAddress SERVER_ADDRESS;
 
 	@Override
 	public void onInitializeClient() {
 		KeybindManager.register();
-		ResourceManager.register();
 	}
 }
