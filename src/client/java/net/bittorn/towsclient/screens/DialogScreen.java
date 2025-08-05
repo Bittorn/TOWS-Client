@@ -50,7 +50,9 @@ public class DialogScreen extends Screen {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) - 24;
 
-        String regexConvert = TOWSClient.CONFIG.serverIP().replaceAll("\\.", "\\.").replace("*", "\\S+");
+        String regexConvert = TOWSClient.CONFIG.serverIP()
+                .replaceAll("\\.", "\\.")
+                .replace("*", "\\S+");
         String REGEX = regexConvert + "\\S*";
 
         String ipMatch = "IP " + (Pattern.matches(REGEX, TOWSClient.SERVER_ADDRESS.toString()) ? "matches" : "does not match");
@@ -62,7 +64,7 @@ public class DialogScreen extends Screen {
 
         context.drawWrappedTextWithShadow(this.textRenderer, StringVisitable.plain(dialog),
                 width / 2 - this.textRenderer.getWidth(dialog) / 2,
-                y + imageHeight / 2 - this.textRenderer.getWrappedLinesHeight(dialog, 360) / 2,
-                360, 0xFFFFFFFF);
+                y + imageHeight / 2 - this.textRenderer.getWrappedLinesHeight(dialog, 320) / 2,
+                320, 0xFFFFFFFF);
     }
 }

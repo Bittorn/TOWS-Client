@@ -54,7 +54,7 @@ public class StoryLoader implements SimpleResourceReloadListener<Map<Identifier,
 
     @Override
     public CompletableFuture<Void> apply(Map<Identifier, Story> identifierStoryMap, ResourceManager resourceManager, Executor executor) {
-        return CompletableFuture.runAsync(() -> StoryManager.setEntries(identifierStoryMap), executor);
+        return CompletableFuture.runAsync(() -> StoryRegistry.setEntries(identifierStoryMap), executor);
     }
 
     @Override

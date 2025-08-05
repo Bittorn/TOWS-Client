@@ -18,11 +18,23 @@ import java.net.SocketAddress;
 
 @Mixin(ClientWorld.class)
 public class ClientWorldMixin {
-    @Shadow @Final private MinecraftClient client;
+    @Shadow
+    @Final
+    private MinecraftClient client;
 
     @Inject(at = @At("RETURN"), method = "<init>")
     private void constructor(
-            ClientPlayNetworkHandler networkHandler, ClientWorld.Properties properties, RegistryKey registryRef, RegistryEntry dimensionType, int loadDistance, int simulationDistance, WorldRenderer worldRenderer, boolean debugWorld, long seed, int seaLevel, CallbackInfo ci
+            ClientPlayNetworkHandler networkHandler,
+            ClientWorld.Properties properties,
+            RegistryKey registryRef,
+            RegistryEntry dimensionType,
+            int loadDistance,
+            int simulationDistance,
+            WorldRenderer worldRenderer,
+            boolean debugWorld,
+            long seed,
+            int seaLevel,
+            CallbackInfo ci
     ) {
         SocketAddress newAddress = networkHandler.getConnection().getAddress();
 
