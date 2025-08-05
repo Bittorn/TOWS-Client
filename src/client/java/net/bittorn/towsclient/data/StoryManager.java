@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class StoryManager {
     public Story loadStory(String filename) {
-        InputStream systemResourceAsStream = ClassLoader.getSystemResourceAsStream(filename);
+        InputStream systemResourceAsStream = ClassLoader.getSystemResourceAsStream(filename); // not work !!
 
         // try-with-resources !!
         try (BufferedReader br = new BufferedReader(
