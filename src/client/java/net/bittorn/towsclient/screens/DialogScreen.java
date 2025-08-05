@@ -1,70 +1,39 @@
 package net.bittorn.towsclient.screens;
 
+import io.wispforest.owo.ui.base.BaseUIModelScreen;
+import io.wispforest.owo.ui.component.ButtonComponent;
+import io.wispforest.owo.ui.container.FlowLayout;
 import net.bittorn.towsclient.TOWSClient;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.text.StringVisitable;
-import net.minecraft.text.Text;
+import net.minecraft.client.gui.Element;
 import net.minecraft.util.Identifier;
 
-import java.awt.*;
-import java.util.regex.Pattern;
+import java.util.Optional;
 
-public class DialogScreen extends Screen {
-    public static final Identifier DIALOG_BOX_TEXTURE = Identifier.of(TOWSClient.MOD_ID, "textures/gui/dialog/dialog_box_gui.png");
+public class DialogScreen extends BaseUIModelScreen<FlowLayout> {
 
-    public DialogScreen(Text title) {
-        super(title);
+    public DialogScreen() {
+        super(FlowLayout.class, DataSource.asset(Identifier.of(TOWSClient.MOD_ID, "dialog_screen_model")));
+    }
+
+    @Override
+    protected void build(FlowLayout rootComponent) {
+//        rootComponent.childById(ButtonComponent.class, "the-button").onPress(button -> {
+//            System.out.println("click");
+//        });
     }
 
     @Override
     public boolean shouldPause() {
-        return false; // cannot pause on server
+        return false; // no pausing on servers
     }
 
     @Override
-    public void applyBlur() {
-        // NO-OP
+    public Optional<Element> hoveredElement(double mouseX, double mouseY) {
+        return super.hoveredElement(mouseX, mouseY);
     }
 
     @Override
-    protected void renderDarkening(DrawContext context) {
-        // NO-OP
-    }
-
-    @Override
-    protected void init() {
-        // do stuff here
-    }
-
-    @Override
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        super.render(context, mouseX, mouseY, delta);
-
-        assert this.client != null; // stop warnings
-
-        int imageWidth = 384;
-        int imageHeight = 128;
-
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) - 24;
-
-        String regexConvert = TOWSClient.CONFIG.serverIP()
-                .replaceAll("\\.", "\\.")
-                .replace("*", "\\S+");
-        String REGEX = regexConvert + "\\S*";
-
-        String ipMatch = "IP " + (Pattern.matches(REGEX, TOWSClient.SERVER_ADDRESS.toString()) ? "matches" : "does not match");
-        boolean isLocal = Pattern.matches("local\\S*", TOWSClient.SERVER_ADDRESS.toString());
-
-        String dialog = isLocal ? "Server is local" : ipMatch;
-
-        context.drawTexture(RenderLayer::getGuiTextured, DIALOG_BOX_TEXTURE, x, y, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight, new Color(255, 255, 255, 255).hashCode());
-
-        context.drawWrappedTextWithShadow(this.textRenderer, StringVisitable.plain(dialog),
-                width / 2 - this.textRenderer.getWidth(dialog) / 2,
-                y + imageHeight / 2 - this.textRenderer.getWrappedLinesHeight(dialog, 320) / 2,
-                320, 0xFFFFFFFF);
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        return super.mouseClicked(mouseX, mouseY, button);
     }
 }

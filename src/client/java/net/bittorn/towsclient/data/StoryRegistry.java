@@ -26,4 +26,8 @@ public class StoryRegistry {
     static void setEntries(Map<Identifier, Story> newEntries) {
         entries = newEntries;
     }
+
+    static void appendEntry(Identifier newId, Story newStory) {
+        entries.put(newId, newStory);
+    }
 }

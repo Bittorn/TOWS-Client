@@ -6,7 +6,6 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
 public class KeybindManager {
@@ -15,7 +14,7 @@ public class KeybindManager {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (interactBinding.wasPressed()) {
-                MinecraftClient.getInstance().setScreen(new DialogScreen(Text.empty()));
+                MinecraftClient.getInstance().setScreen(new DialogScreen());
             }
         });
     }
