@@ -61,7 +61,8 @@ public class DialogScreen extends Screen {
         context.drawTexture(RenderLayer::getGuiTextured, DIALOG_BOX_TEXTURE, x, y, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight, new Color(255, 255, 255, 255).hashCode());
 
         context.drawWrappedTextWithShadow(this.textRenderer, StringVisitable.plain(dialog),
-                width / 2 - this.textRenderer.getWidth(dialog) / 2, y + imageHeight / 2,
-                imageWidth - 24, 0xFFFFFFFF);
+                width / 2 - this.textRenderer.getWidth(dialog) / 2,
+                y + imageHeight / 2 - this.textRenderer.getWrappedLinesHeight(dialog, 360) / 2,
+                360, 0xFFFFFFFF);
     }
 }
