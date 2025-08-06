@@ -5,8 +5,8 @@
             <children>
                 <flow-layout direction="vertical">
                     <children>
-                        <label>
-                            <text>★ Villager</text>
+                        <label id="speaker-label">
+                            <text>★</text>
                             <shadow>true</shadow>
                             <tooltip-text>Speaker Name</tooltip-text>
                         </label>
@@ -30,7 +30,7 @@
                     <children>
                         <flow-layout direction="vertical">
                             <children>
-                                <label>
+                                <label id="text-label">
                                     <text>placeholder</text>
                                     <shadow>true</shadow>
 

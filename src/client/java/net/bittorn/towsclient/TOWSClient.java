@@ -6,8 +6,6 @@ import net.fabricmc.api.ClientModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.net.SocketAddress;
-
 public class TOWSClient implements ClientModInitializer {
 
 	public static final String MOD_ID = "towsclient";
@@ -15,7 +13,7 @@ public class TOWSClient implements ClientModInitializer {
 
 	public static final TOWSConfig CONFIG = TOWSConfig.createAndLoad();
 
-	public static SocketAddress SERVER_ADDRESS;
+	public static boolean enabled;
 
 	@Override
 	public void onInitializeClient() {

@@ -14,7 +14,7 @@ public class KeybindManager {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (interactBinding.wasPressed()) {
-                MinecraftClient.getInstance().setScreen(new DialogScreen());
+                if (TOWSClient.enabled) MinecraftClient.getInstance().setScreen(new DialogScreen());
             }
         });
     }

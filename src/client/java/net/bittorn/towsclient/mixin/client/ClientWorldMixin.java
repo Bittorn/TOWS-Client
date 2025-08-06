@@ -33,19 +33,19 @@ public class ClientWorldMixin {
     ) {
         SocketAddress newAddress = networkHandler.getConnection().getAddress();
 
-        TOWSClient.LOGGER.info("Setting IP address to {}", newAddress);
-        TOWSClient.SERVER_ADDRESS = newAddress;
-
         String regexConvert = TOWSClient.CONFIG.serverIP()
                 .replaceAll("\\.", "\\.")
                 .replace("*", "\\S+");
         String REGEX = regexConvert + "\\S*";
 
-        String ipMatch = "IP " + (Pattern.matches(REGEX, TOWSClient.SERVER_ADDRESS.toString()) ? "matches" : "does not match");
-        boolean isLocal = Pattern.matches("local\\S*", TOWSClient.SERVER_ADDRESS.toString());
+        boolean isMatch = Pattern.matches(REGEX, newAddress.toString());
+        boolean isLocal = Pattern.matches("local\\S*", newAddress.toString());
 
-        String dialog = isLocal ? "Server is local" : ipMatch;
+        String ipMatch = isLocal ? "Server is local" : "IP " + ((isMatch) ? "matches" : "does not match");
 
-        TOWSClient.LOGGER.info(dialog);
+        TOWSClient.LOGGER.info(ipMatch);
+
+        if (isMatch || (isLocal && TOWSClient.CONFIG.enableLocally())) TOWSClient.enabled = true;
+        if (!TOWSClient.CONFIG.enabled()) TOWSClient.enabled = false;
     }
 }

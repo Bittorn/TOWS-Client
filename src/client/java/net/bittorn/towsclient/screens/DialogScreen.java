@@ -1,10 +1,12 @@
 package net.bittorn.towsclient.screens;
 
 import io.wispforest.owo.ui.base.BaseUIModelScreen;
-import io.wispforest.owo.ui.component.ButtonComponent;
+import io.wispforest.owo.ui.component.LabelComponent;
 import io.wispforest.owo.ui.container.FlowLayout;
+import io.wispforest.owo.ui.core.Color;
 import net.bittorn.towsclient.TOWSClient;
 import net.minecraft.client.gui.Element;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.Optional;
@@ -17,9 +19,13 @@ public class DialogScreen extends BaseUIModelScreen<FlowLayout> {
 
     @Override
     protected void build(FlowLayout rootComponent) {
-//        rootComponent.childById(ButtonComponent.class, "the-button").onPress(button -> {
-//            System.out.println("click");
-//        });
+        rootComponent.childById(LabelComponent.class, "speaker-label")
+                .text(Text.of("A villager"))
+                .color(Color.BLUE)
+                .tooltip(Text.of("Prisoner of God"));
+        rootComponent.childById(LabelComponent.class, "text-label")
+                .text(Text.of("This is some placeholder text"))
+                .color(Color.WHITE);
     }
 
     @Override
