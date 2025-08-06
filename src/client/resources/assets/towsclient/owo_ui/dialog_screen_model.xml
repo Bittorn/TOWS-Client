@@ -1,0 +1,77 @@
+<owo-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/wisp-forest/owo-lib/1.20/owo-ui.xsd">
+    <components>
+        <flow-layout direction="vertical">
+            <children>
+                <flow-layout direction="vertical">
+                    <children>
+                        <label>
+                            <text>★ Villager</text>
+                            <shadow>true</shadow>
+                            <tooltip-text>Speaker Name</tooltip-text>
+                        </label>
+                    </children>
+
+                    <surface>
+                        <flat>#C0101010</flat>
+                        <outline>#FFFFFFFF</outline>
+                        <blur quality="4" size="16"/>
+                    </surface>
+
+                    <padding>
+                        <all>8</all>
+                    </padding>
+
+                    <margins>
+                        <bottom>4</bottom>
+                    </margins>
+                </flow-layout>
+                <flow-layout direction="vertical">
+                    <children>
+                        <flow-layout direction="vertical">
+                            <children>
+                                <label>
+                                    <text>placeholder</text>
+                                    <shadow>true</shadow>
+
+                                    <horizontal-text-alignment>center</horizontal-text-alignment>
+                                    <vertical-text-alignment>center</vertical-text-alignment>
+
+                                    <max-width>280</max-width>
+                                </label>
+                            </children>
+
+                            <horizontal-alignment>center</horizontal-alignment>
+                            <vertical-alignment>center</vertical-alignment>
+                        </flow-layout>
+                    </children>
+
+                    <padding>
+                        <all>10</all>
+                    </padding>
+
+                    <sizing>
+                        <vertical method="fixed">80</vertical>
+                        <horizontal method="fixed">300</horizontal>
+                    </sizing>
+
+                    <horizontal-alignment>center</horizontal-alignment>
+                    <vertical-alignment>center</vertical-alignment>
+
+                    <surface>
+                        <flat>#C0101010</flat>
+                        <outline>#FFFFFFFF</outline>
+                        <blur quality="4" size="16"/>
+                    </surface>
+                </flow-layout>
+            </children>
+
+            <vertical-alignment>bottom</vertical-alignment>
+            <horizontal-alignment>center</horizontal-alignment>
+
+            <margins>
+                <bottom>30</bottom>
+            </margins>
+        </flow-layout>
+    </components>
+</owo-ui>
