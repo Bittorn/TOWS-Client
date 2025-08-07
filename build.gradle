@@ -43,9 +43,6 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	// Gson (might not be needed)
-	//implementation "com.google.code.gson:gson:${project.gson_version}"
-
 	// Java implementation of Ink dialog engine
 	implementation "com.bladecoder.ink:blade-ink:${project.ink_version}"
 

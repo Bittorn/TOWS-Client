@@ -18,7 +18,7 @@ import java.util.concurrent.Executor;
 
 public class StoryLoader implements SimpleResourceReloadListener<Map<Identifier, Story>> {
 
-    public static final String DIALOG_PATH = "tows/dialog";
+    public static final String DIALOG_PATH = "dialog";
 
     public static void register() {
         StoryLoader instance = new StoryLoader();
@@ -36,16 +36,22 @@ public class StoryLoader implements SimpleResourceReloadListener<Map<Identifier,
                     StringBuilder sb = new StringBuilder();
                     String line = br.toString();
 
+                    // Replace BOM char (if exists)
+                    if (line != null) {
+                        TOWSClient.LOGGER.info("Loading new Story JSON: {}", id.toString());
+                        line = line.replace("\uFEFF", " ");
+                    }
+
                     while (line != null) {
                         sb.append(line);
                         sb.append("\n");
                         line = br.readLine();
                     }
 
+                    TOWSClient.LOGGER.info("Attempting to build new Story");
                     data.put(id, new Story(sb.toString()));
                 } catch (Exception e) {
-                    TOWSClient.LOGGER.error("Could not load resource from {}", location, e);
-                    throw new RuntimeException(e);
+                    TOWSClient.LOGGER.error("Could not load Story from {}", location, e);
                 }
             });
             return data;
