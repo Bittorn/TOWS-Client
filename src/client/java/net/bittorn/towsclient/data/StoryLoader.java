@@ -33,12 +33,13 @@ public class StoryLoader implements SimpleResourceReloadListener<Map<Identifier,
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8))) {
                     Identifier id = Identifier.of(location.getNamespace(), location.getPath().substring(DIALOG_PATH.length() + 1, location.getPath().length() - 5));
 
+                    TOWSClient.LOGGER.info("Reading new Story JSON: {}", id.toString());
+
                     StringBuilder sb = new StringBuilder();
                     String line = br.readLine();
 
                     // Replace BOM char (if exists)
                     if (line != null) {
-                        TOWSClient.LOGGER.info("Loading new Story JSON: {}", id.toString());
                         line = line.replace("\uFEFF", " ");
                     }
 
@@ -48,10 +49,11 @@ public class StoryLoader implements SimpleResourceReloadListener<Map<Identifier,
                         line = br.readLine();
                     }
 
-                    TOWSClient.LOGGER.info("Attempting to build new Story");
                     data.put(id, new Story(sb.toString()));
+                    TOWSClient.LOGGER.info("Successfully registered Story: {}", id.toString());
                 } catch (Exception e) {
                     TOWSClient.LOGGER.error("Could not load Story from {}", location, e);
+                    throw new RuntimeException(e);
                 }
             });
             return data;
