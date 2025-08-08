@@ -34,7 +34,7 @@ public class StoryLoader implements SimpleResourceReloadListener<Map<Identifier,
                     Identifier id = Identifier.of(location.getNamespace(), location.getPath().substring(DIALOG_PATH.length() + 1, location.getPath().length() - 5));
 
                     StringBuilder sb = new StringBuilder();
-                    String line = br.toString();
+                    String line = br.readLine();
 
                     // Replace BOM char (if exists)
                     if (line != null) {
