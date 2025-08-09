@@ -1,6 +1,5 @@
 package net.bittorn.towsclient;
 
-import net.bittorn.towsclient.data.StoryRegistry;
 import net.bittorn.towsclient.screens.DialogScreen;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -8,7 +7,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public class KeybindManager {
@@ -19,9 +17,9 @@ public class KeybindManager {
             while (interactBinding.wasPressed()) {
                 if (TOWSClient.enabled) MinecraftClient.getInstance().setScreen(new DialogScreen("placeholder_dialog"));
             }
-            while (KeyBinding.byId("key.use").wasPressed()) {
-                client.player.sendMessage(Text.literal("Use key pressed"), false); // WHY TF DOESN'T THIS WORK ONG
-            }
+//            while (KeyBinding.byId("key.use").wasPressed()) {
+//                client.player.sendMessage(Text.literal("Use key pressed"), false); // WHY TF DOESN'T THIS WORK ONG
+//            }
         });
     }
 }
