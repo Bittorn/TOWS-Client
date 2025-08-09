@@ -8,7 +8,6 @@
                         <label id="speaker-label">
                             <text>Speaker</text>
                             <shadow>true</shadow>
-                            <tooltip-text>Speaker title</tooltip-text>
                         </label>
                     </children>
 

@@ -1,18 +1,14 @@
 package net.bittorn.towsclient.screens;
 
-import com.bladecoder.ink.runtime.Story;
 import io.wispforest.owo.ui.base.BaseUIModelScreen;
 import io.wispforest.owo.ui.component.LabelComponent;
 import io.wispforest.owo.ui.container.FlowLayout;
 import io.wispforest.owo.ui.core.Color;
 import net.bittorn.towsclient.TOWSClient;
 import net.bittorn.towsclient.data.StoryManager;
-import net.bittorn.towsclient.data.StoryRegistry;
 import net.minecraft.client.gui.Element;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import java.util.List;
 import java.util.Optional;
 
 public class DialogScreen extends BaseUIModelScreen<FlowLayout> {
@@ -28,25 +24,15 @@ public class DialogScreen extends BaseUIModelScreen<FlowLayout> {
     protected void build(FlowLayout rootComponent) {
         rootComponent.childById(LabelComponent.class, "speaker-label")
                 .text(storyManager.speaker)
-                .color(Color.WHITE)
-                .tooltip(storyManager.tooltip);
+                .color(Color.WHITE);
         rootComponent.childById(LabelComponent.class, "text-label")
                 .text(storyManager.line)
                 .color(Color.WHITE);
     }
 
-    public Text getDialogLine() {
-        return null; // not implemented
-    }
-
     @Override
     public boolean shouldPause() {
         return false; // no pausing on servers
-    }
-
-    @Override
-    public boolean shouldCloseOnEsc() {
-        return super.shouldCloseOnEsc();
     }
 
     @Override

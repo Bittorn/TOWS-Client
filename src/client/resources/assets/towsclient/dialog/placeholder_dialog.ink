@@ -1,5 +1,4 @@
-VAR speaker = "Villager"
-VAR tooltip = "Prisoner"
+VAR speaker = "A villager"
 
 Once upon a time...
 There were four lines of content
