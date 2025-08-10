@@ -28,7 +28,7 @@ public class StoryManager {
             String speakerStr = (String) story.getVariablesState().get("speaker");
             if (!speakerStr.isEmpty()) speaker = Text.translatable(speakerStr);
         } catch (Exception e) {
-            TOWSClient.LOGGER.error("Error parsing Story variables: {}", storyId, e);
+            TOWSClient.LOGGER.error("Error getting Story speaker: {}", storyId, e);
         }
     }
 }
