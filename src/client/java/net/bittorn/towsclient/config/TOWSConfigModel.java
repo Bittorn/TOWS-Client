@@ -3,7 +3,6 @@ package net.bittorn.towsclient.config;
 
 import io.wispforest.owo.config.annotation.Config;
 import io.wispforest.owo.config.annotation.Modmenu;
-import io.wispforest.owo.config.annotation.SectionHeader;
 import net.bittorn.towsclient.TOWSClient;
 
 @Modmenu(modId = TOWSClient.MOD_ID)
