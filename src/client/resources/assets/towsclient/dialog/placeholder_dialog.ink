@@ -1,4 +1,6 @@
-VAR speaker = "A villager"
+# author: Bittorn
+# speaker: A villager
+# tooltip: Prisoner of God
 
 Once upon a time...
 There were four lines of content

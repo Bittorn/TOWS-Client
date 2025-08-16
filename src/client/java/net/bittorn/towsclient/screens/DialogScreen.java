@@ -9,8 +9,6 @@ import net.bittorn.towsclient.data.StoryManager;
 import net.minecraft.client.gui.Element;
 import net.minecraft.util.Identifier;
 
-import java.util.Optional;
-
 public class DialogScreen extends BaseUIModelScreen<FlowLayout> {
 
     StoryManager storyManager;
@@ -24,7 +22,8 @@ public class DialogScreen extends BaseUIModelScreen<FlowLayout> {
     protected void build(FlowLayout rootComponent) {
         rootComponent.childById(LabelComponent.class, "speaker-label")
                 .text(storyManager.speaker)
-                .color(Color.WHITE);
+                .color(Color.WHITE)
+                .tooltip(storyManager.tooltip);
         rootComponent.childById(LabelComponent.class, "text-label")
                 .text(storyManager.line)
                 .color(Color.WHITE);
@@ -35,13 +34,13 @@ public class DialogScreen extends BaseUIModelScreen<FlowLayout> {
         return false; // no pausing on servers
     }
 
-    @Override
-    public Optional<Element> hoveredElement(double mouseX, double mouseY) {
-        return super.hoveredElement(mouseX, mouseY);
-    }
+//    @Override
+//    public Optional<Element> hoveredElement(double mouseX, double mouseY) {
+//        return super.hoveredElement(mouseX, mouseY);
+//    }
 
-    @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        return super.mouseClicked(mouseX, mouseY, button);
-    }
+//    @Override
+//    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+//        return super.mouseClicked(mouseX, mouseY, button);
+//    }
 }

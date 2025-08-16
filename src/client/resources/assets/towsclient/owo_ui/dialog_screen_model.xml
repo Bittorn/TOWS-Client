@@ -8,6 +8,7 @@
                         <label id="speaker-label">
                             <text>Speaker</text>
                             <shadow>true</shadow>
+                            <tooltip-text>Tooltip</tooltip-text>
                         </label>
                     </children>
 

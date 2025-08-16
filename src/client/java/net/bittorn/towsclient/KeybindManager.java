@@ -14,7 +14,9 @@ public class KeybindManager {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (interactBinding.wasPressed()) {
-                if (TOWSClient.enabled) MinecraftClient.getInstance().setScreen(new DialogScreen("placeholder_dialog"));
+                if (!TOWSClient.enabled) return;
+
+                MinecraftClient.getInstance().setScreen(new DialogScreen("placeholder_dialog"));
             }
 //            while (KeyBinding.byId("key.use").wasPressed()) {
 //                client.player.sendMessage(Text.literal("Use key pressed"), false); // WHY TF DOESN'T THIS WORK ONG
