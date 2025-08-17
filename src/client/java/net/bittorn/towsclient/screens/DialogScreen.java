@@ -6,12 +6,16 @@ import io.wispforest.owo.ui.container.FlowLayout;
 import io.wispforest.owo.ui.core.Color;
 import net.bittorn.towsclient.TOWSClient;
 import net.bittorn.towsclient.data.StoryManager;
-import net.minecraft.client.gui.Element;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.util.InputUtil;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class DialogScreen extends BaseUIModelScreen<FlowLayout> {
 
     StoryManager storyManager;
+    InputUtil.Key interactKey = KeyBindingHelper.getBoundKeyOf(KeyBinding.byId("key.towsclient.interact"));
 
     public DialogScreen(String pathToStory) {
         super(FlowLayout.class, DataSource.asset(Identifier.of(TOWSClient.MOD_ID, "dialog_screen_model")));
@@ -27,6 +31,8 @@ public class DialogScreen extends BaseUIModelScreen<FlowLayout> {
         rootComponent.childById(LabelComponent.class, "text-label")
                 .text(storyManager.line)
                 .color(Color.WHITE);
+        rootComponent.childById(LabelComponent.class, "controls-label")
+                .text(Text.of("⏴ Press '" + interactKey.getLocalizedText().getLiteralString() + "' to continue ⏵"));
     }
 
     @Override
@@ -34,13 +40,8 @@ public class DialogScreen extends BaseUIModelScreen<FlowLayout> {
         return false; // no pausing on servers
     }
 
-//    @Override
-//    public Optional<Element> hoveredElement(double mouseX, double mouseY) {
-//        return super.hoveredElement(mouseX, mouseY);
-//    }
-
-//    @Override
-//    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-//        return super.mouseClicked(mouseX, mouseY, button);
-//    }
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        return super.keyPressed(keyCode, scanCode, modifiers);
+    }
 }

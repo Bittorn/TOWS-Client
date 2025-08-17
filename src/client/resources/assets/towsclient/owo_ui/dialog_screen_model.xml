@@ -64,6 +64,14 @@
                         <blur quality="4" size="16"/>
                     </surface>
                 </flow-layout>
+                <label id="controls-label">
+                    <text>⏴Press '?' to continue⏵</text>
+                    <color>#CCCCCC</color>
+                    <shadow>true</shadow>
+                    <margins>
+                        <top>4</top>
+                    </margins>
+                </label>
             </children>
 
             <vertical-alignment>bottom</vertical-alignment>
