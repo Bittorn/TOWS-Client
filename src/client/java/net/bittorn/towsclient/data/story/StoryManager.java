@@ -1,5 +1,6 @@
 package net.bittorn.towsclient.data.story;
 
+import com.bladecoder.ink.runtime.Choice;
 import com.bladecoder.ink.runtime.Story;
 import net.bittorn.towsclient.TOWSClient;
 import net.minecraft.client.MinecraftClient;
@@ -57,6 +58,13 @@ public class StoryManager {
         try {
             if (story.canContinue()) {
                 line = Text.translatable(story.Continue().trim());
+                if (!story.getCurrentChoices().isEmpty()) {
+                    HashMap<Integer, String> choices = new HashMap<Integer, String>();
+                    for (Choice choice : story.getCurrentChoices()) {
+                        choices.put(choice.getIndex(), choice.getText());
+                    }
+                    TOWSClient.LOGGER.info(choices);
+                }
             } else if (story.getCurrentChoices().isEmpty()) {
                 exitStory();
             }
