@@ -21,8 +21,6 @@ public class DialogScreen extends BaseUIModelScreen<FlowLayout> {
 
     boolean justEntered = false;
 
-    public DialogScreen INSTANCE = DialogScreen.this;
-
     public DialogScreen(String pathToStory) {
         super(FlowLayout.class, DataSource.asset(Identifier.of(TOWSClient.MOD_ID, "dialog_screen_model")));
         storyManager = new StoryManager(pathToStory);
