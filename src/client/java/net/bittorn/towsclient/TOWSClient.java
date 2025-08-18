@@ -1,7 +1,7 @@
 package net.bittorn.towsclient;
 
 import net.bittorn.towsclient.config.TOWSConfig;
-import net.bittorn.towsclient.data.StoryLoader;
+import net.bittorn.towsclient.data.story.StoryLoader;
 import net.fabricmc.api.ClientModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

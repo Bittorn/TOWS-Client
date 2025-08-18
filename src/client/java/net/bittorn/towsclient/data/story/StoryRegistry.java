@@ -1,4 +1,4 @@
-package net.bittorn.towsclient.data;
+package net.bittorn.towsclient.data.story;
 
 import com.bladecoder.ink.runtime.Story;
 import net.minecraft.util.Identifier;

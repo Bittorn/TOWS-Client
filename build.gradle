@@ -44,7 +44,7 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Java implementation of Ink dialog engine
-	implementation "com.bladecoder.ink:blade-ink:${project.ink_version}"
+	include modImplementation("com.bladecoder.ink:blade-ink:${project.ink_version}")
 
 	// oωo (owo-lib)
 	annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
