@@ -3,6 +3,18 @@
     <components>
         <flow-layout direction="vertical">
             <children>
+                <flow-layout direction="vertical" id="choices-box">
+                    <children>
+                        <!-- STUFF GOES HERE -->
+                    </children>
+
+                    <margins>
+                        <bottom>14</bottom>
+                    </margins>
+
+                    <vertical-alignment>center</vertical-alignment>
+                    <horizontal-alignment>center</horizontal-alignment>
+                </flow-layout>
                 <flow-layout direction="vertical">
                     <children>
                         <label id="speaker-label">
@@ -65,7 +77,7 @@
                     </surface>
                 </flow-layout>
                 <label id="controls-label">
-                    <text>⏴Press '?' to continue⏵</text>
+                    <text>⏴ Click to continue ⏵</text>
                     <color>#CCCCCC</color>
                     <shadow>true</shadow>
                     <margins>

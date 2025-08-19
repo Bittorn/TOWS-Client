@@ -3,7 +3,7 @@ package net.bittorn.towsclient.data.story;
 import com.bladecoder.ink.runtime.Choice;
 import com.bladecoder.ink.runtime.Story;
 import net.bittorn.towsclient.TOWSClient;
-import net.minecraft.client.MinecraftClient;
+import net.bittorn.towsclient.screens.DialogScreen;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -15,19 +15,23 @@ public class StoryManager {
     Story story;
     Identifier storyId;
 
-    HashMap<String, String> globalTags = new HashMap<String, String>();
+    DialogScreen dialogScreen;
+
+    HashMap<String, String> globalTags = new HashMap<>();
 
     public Text speaker = Text.of("Placeholder speaker");
     public Text tooltip = Text.of("Placeholder tooltip");
 
     public Text line = Text.of("Placeholder line");
 
-    public StoryManager(String pathToStory) {
+    public StoryManager(String pathToStory, DialogScreen screen) {
+        dialogScreen = screen;
         storyId = Identifier.of(TOWSClient.MOD_ID, pathToStory);
 
         // Creating Story object from JSON
         try {
             story = StoryRegistry.getOrEmpty(storyId).orElseThrow();
+            story.resetState();
         } catch (Exception e) {
             TOWSClient.LOGGER.error("Error parsing Story: {}", storyId, e);
             throw new RuntimeException(e);
@@ -54,16 +58,29 @@ public class StoryManager {
         if (globalTags.containsKey("tooltip")) tooltip = Text.translatable(globalTags.get("tooltip"));
     }
 
+    public void selectChoice(int index) {
+        try {
+            story.chooseChoiceIndex(index);
+            // Needed twice to skip the repeating of your choice
+            // Yes it's stupid, but it works, so it's not stupid
+            continueOrExitStory();
+            continueOrExitStory();
+        } catch (Exception e) {
+            TOWSClient.LOGGER.error("Error making choice in Story: {}", storyId, e);
+            throw new RuntimeException(e);
+        }
+    }
+
     public void continueOrExitStory() {
         try {
             if (story.canContinue()) {
                 line = Text.translatable(story.Continue().trim());
                 if (!story.getCurrentChoices().isEmpty()) {
-                    HashMap<Integer, String> choices = new HashMap<Integer, String>();
+                    HashMap<Integer, String> choices = new HashMap<>();
                     for (Choice choice : story.getCurrentChoices()) {
-                        choices.put(choice.getIndex(), choice.getText());
+                        choices.put(choice.getIndex(), choice.getText().trim());
                     }
-                    TOWSClient.LOGGER.info(choices);
+                    dialogScreen.setChoices(choices);
                 }
             } else if (story.getCurrentChoices().isEmpty()) {
                 exitStory();
@@ -75,10 +92,6 @@ public class StoryManager {
     }
 
     public void exitStory() {
-        try { story.resetState(); } catch (Exception e) {
-            TOWSClient.LOGGER.error("Error resetting Story state: {}", storyId, e);
-            throw new RuntimeException(e);
-        }
-        MinecraftClient.getInstance().setScreen(null);
+        dialogScreen.close();
     }
 }

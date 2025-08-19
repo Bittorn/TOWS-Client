@@ -18,9 +18,6 @@ public class KeybindManager {
 
                 MinecraftClient.getInstance().setScreen(new DialogScreen("placeholder_dialog"));
             }
-//            while (KeyBinding.byId("key.use").wasPressed()) {
-//                client.player.sendMessage(Text.literal("Use key pressed"), false); // WHY TF DOESN'T THIS WORK ONG
-//            }
         });
     }
 }
