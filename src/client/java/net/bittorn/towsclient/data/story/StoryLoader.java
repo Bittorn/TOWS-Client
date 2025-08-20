@@ -67,8 +67,10 @@ public class StoryLoader implements SimpleResourceReloadListener<Map<Identifier,
 
     @Override
     public Identifier getFabricId() {
-        return Identifier.of(TOWSClient.MOD_ID, "story");
+        return Identifier.of(TOWSClient.MOD_ID, DIALOG_PATH);
     }
 
-    private StoryLoader() {} // don't exactly know why this is here but whatever
+    private StoryLoader() {
+        // no-op constructor
+    }
 }
