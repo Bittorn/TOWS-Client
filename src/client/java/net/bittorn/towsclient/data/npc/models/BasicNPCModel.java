@@ -5,6 +5,7 @@ import org.joml.Vector3d;
 public class BasicNPCModel {
     private String identifier;
     private String dialogId;
+    private String entityId;
     private int[] position = new int[2];
 
     private BasicNPCModel() {
@@ -17,6 +18,10 @@ public class BasicNPCModel {
 
     public String getDialogId() {
         return dialogId;
+    }
+
+    public String getEntityId() {
+        return entityId;
     }
 
     public BlockPos getPosition() {
