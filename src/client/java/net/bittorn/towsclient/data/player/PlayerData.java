@@ -1,6 +1,7 @@
 package net.bittorn.towsclient.data.player;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonWriter;
 import net.bittorn.towsclient.TOWSClient;
 import net.fabricmc.loader.api.FabricLoader;
@@ -10,16 +11,22 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Optional;
 
+@SuppressWarnings("unused")
 public class PlayerData {
-    private Map<String, String> flags;
-    private int coins;
+    @SuppressWarnings("FieldMayBeFinal")
+    private Map<String, String> flags = Map.of();
+    private int coins = 50;
+
+    PlayerData() {
+        // no-args constructor
+    }
 
     // TODO: move storage directory
     private static final File FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "towsclient.player.json");
 
     public static PlayerData read() {
         if (!FILE.exists()) {
-            TOWSClient.LOGGER.warn("Unable to find player data at path {}, creating...", FILE.getPath());
+            TOWSClient.LOGGER.warn("Unable to find player data at path {}, assuming it doesn't exist", FILE.getPath());
             return new PlayerData().write();
         }
 
@@ -33,9 +40,9 @@ public class PlayerData {
     }
 
     public PlayerData write() {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try (JsonWriter writer = gson.newJsonWriter(new FileWriter(FILE))) {
-            gson.toJson(gson.toJsonTree(PlayerData.class), writer);
+            gson.toJson(gson.toJsonTree(this, PlayerData.class), writer);
             TOWSClient.LOGGER.info("Successfully wrote player data to disk");
         } catch (Exception e) {
             TOWSClient.LOGGER.error("Error writing player data to disk", e);
