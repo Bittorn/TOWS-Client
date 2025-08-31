@@ -1,7 +1,6 @@
 package net.bittorn.towsclient.data.npc;
 
-import com.bladecoder.ink.runtime.Story;
-import net.bittorn.towsclient.data.npc.models.BasicNPCModel;
+import net.bittorn.towsclient.data.npc.models.BasicNPCData;
 import net.minecraft.util.Identifier;
 
 import java.util.Map;
@@ -9,13 +8,13 @@ import java.util.Optional;
 import java.util.Set;
 
 public class NPCRegistry {
-    private static Map<Identifier, BasicNPCModel> entries = Map.of();
+    private static Map<Identifier, BasicNPCData> entries = Map.of();
 
     public static Set<Identifier> getIds() {
         return entries.keySet();
     }
 
-    public static Optional<BasicNPCModel> getOrEmpty(Identifier id) {
+    public static Optional<BasicNPCData> getOrEmpty(Identifier id) {
         return Optional.ofNullable(entries.get(id));
     }
 
@@ -23,11 +22,11 @@ public class NPCRegistry {
         return getIds().contains(id);
     }
 
-    static void setEntries(Map<Identifier, BasicNPCModel> newEntries) {
+    static void setEntries(Map<Identifier, BasicNPCData> newEntries) {
         entries = newEntries;
     }
 
-    static void appendEntry(Identifier newId, BasicNPCModel newNPC) {
+    static void appendEntry(Identifier newId, BasicNPCData newNPC) {
         entries.put(newId, newNPC);
     }
 }

@@ -14,6 +14,7 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -60,19 +61,25 @@ public class DialogScreen extends BaseUIModelScreen<FlowLayout> {
     }
 
     public void setChoices(HashMap<Integer, String> choices) {
+
+        int color = 0xC0101010;
+        int hoveredColor = 0xFF101010;
+        int disabledColor = 0x44101010;
+
         for (int index : choices.keySet()) {
             FlowLayout choicesBox = root.childById(FlowLayout.class, "choices-box");
             choicesBox.child(
                     Components.button(Text.translatable(choices.get(index)), button -> {
                         storyManager.selectChoice(index);
                         choicesBox.clearChildren();
-                    }).renderer(ButtonComponent.Renderer.flat(0xC0101010, 0xFF101010, 0x44101010)));
+                    }).renderer(ButtonComponent.Renderer.flat(color, hoveredColor, disabledColor)));
         }
     }
 
     @Override
     public boolean keyReleased(int keyCode, int scanCode, int modifiers) {
-        if (justEntered) { // Here to avoid accidentally continuing when we're not supposed to
+        // Here to avoid accidentally continuing when we're not supposed to
+        if (justEntered) {
             justEntered = false;
             return super.keyReleased(keyCode, scanCode, modifiers);
         }

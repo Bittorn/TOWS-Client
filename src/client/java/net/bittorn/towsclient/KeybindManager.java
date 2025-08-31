@@ -1,11 +1,14 @@
 package net.bittorn.towsclient;
 
+import net.bittorn.towsclient.data.npc.NPCRegistry;
+import net.bittorn.towsclient.data.npc.models.BasicNPCData;
 import net.bittorn.towsclient.screens.DialogScreen;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public class KeybindManager {
@@ -16,7 +19,14 @@ public class KeybindManager {
             while (interactBinding.wasPressed()) {
                 if (!TOWSClient.enabled) return;
 
-                MinecraftClient.getInstance().setScreen(new DialogScreen("placeholder_dialog"));
+                Identifier npcId = Identifier.of(TOWSClient.MOD_ID, "placeholder_npc");
+
+                try {
+                    BasicNPCData npc = NPCRegistry.getOrEmpty(npcId).orElseThrow();
+                    MinecraftClient.getInstance().setScreen(new DialogScreen(npc.getDialogId()));
+                } catch (Exception e) {
+                    TOWSClient.LOGGER.error("Error parsing NPC: {}", npcId, e);
+                }
             }
         });
     }

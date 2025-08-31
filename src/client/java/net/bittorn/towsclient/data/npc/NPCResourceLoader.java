@@ -2,7 +2,7 @@ package net.bittorn.towsclient.data.npc;
 
 import com.google.gson.Gson;
 import net.bittorn.towsclient.TOWSClient;
-import net.bittorn.towsclient.data.npc.models.BasicNPCModel;
+import net.bittorn.towsclient.data.npc.models.BasicNPCData;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleResourceReloadListener;
 import net.minecraft.resource.ResourceManager;
@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
-public class NPCResourceLoader implements SimpleResourceReloadListener<Map<Identifier, BasicNPCModel>> {
+public class NPCResourceLoader implements SimpleResourceReloadListener<Map<Identifier, BasicNPCData>> {
 
     public static final String NPC_PATH = "npc";
 
@@ -27,16 +27,16 @@ public class NPCResourceLoader implements SimpleResourceReloadListener<Map<Ident
     }
 
     @Override
-    public CompletableFuture<Map<Identifier, BasicNPCModel>> load(ResourceManager resourceManager, Executor executor) {
+    public CompletableFuture<Map<Identifier, BasicNPCData>> load(ResourceManager resourceManager, Executor executor) {
         return CompletableFuture.supplyAsync(() -> {
-            Map<Identifier, BasicNPCModel> data = new HashMap<>();
+            Map<Identifier, BasicNPCData> data = new HashMap<>();
             resourceManager.findResources(NPC_PATH, (res) -> res.getPath().endsWith(".json")).forEach((location, resource) -> {
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8))) {
                     Identifier id = Identifier.of(location.getNamespace(), location.getPath().substring(NPC_PATH.length() + 1, location.getPath().length() - 5));
 
                     TOWSClient.LOGGER.info("Reading new NPC JSON: {}", id.toString());
 
-                    BasicNPCModel npc = new Gson().fromJson(br, BasicNPCModel.class);
+                    BasicNPCData npc = new Gson().fromJson(br, BasicNPCData.class);
 
                     data.put(id, npc);
 
@@ -51,7 +51,7 @@ public class NPCResourceLoader implements SimpleResourceReloadListener<Map<Ident
     }
 
     @Override
-    public CompletableFuture<Void> apply(Map<Identifier, BasicNPCModel> basicNPCModelMap, ResourceManager resourceManager, Executor executor) {
+    public CompletableFuture<Void> apply(Map<Identifier, BasicNPCData> basicNPCModelMap, ResourceManager resourceManager, Executor executor) {
         return CompletableFuture.runAsync(() -> NPCRegistry.setEntries(basicNPCModelMap), executor);
     }
 

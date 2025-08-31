@@ -1,19 +1,14 @@
 package net.bittorn.towsclient.data.npc.models;
 import net.minecraft.util.math.BlockPos;
-import org.joml.Vector3d;
 
-public class BasicNPCModel {
-    private String identifier;
+@SuppressWarnings("unused")
+public class BasicNPCData {
     private String dialogId;
     private String entityId;
-    private int[] position = new int[2];
+    private final int[] position = new int[2];
 
-    private BasicNPCModel() {
+    private BasicNPCData() {
         // no-op constructor
-    }
-
-    private String getIdentifier() {
-        return identifier;
     }
 
     public String getDialogId() {
