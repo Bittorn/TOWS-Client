@@ -7,10 +7,6 @@ public class BasicNPCData {
     private String entityId;
     private final int[] position = new int[2];
 
-    private BasicNPCData() {
-        // no-op constructor
-    }
-
     public String getDialogId() {
         return dialogId;
     }

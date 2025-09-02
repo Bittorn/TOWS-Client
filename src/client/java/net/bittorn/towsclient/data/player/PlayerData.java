@@ -82,11 +82,7 @@ public class PlayerData {
     }
 
     public boolean containsFlag(String flag) {
-        return flags.containsKey(flag);
-    }
-
-    public boolean containsSessionFlag(String flag) {
-        return sessionFlags.containsKey(flag);
+        return flags.containsKey(flag) || sessionFlags.containsKey(flag);
     }
 
     public Optional<String> getFlagOrEmpty(String flag) {
