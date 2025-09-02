@@ -21,10 +21,6 @@ public class PlayerData {
     @SuppressWarnings("FieldMayBeFinal")
     private transient Map<String, String> sessionFlags = Map.of();
 
-    PlayerData() {
-        // no-args constructor
-    }
-
     // TODO: move storage directory
     private static final File FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "towsclient.player.json");
 
@@ -61,6 +57,8 @@ public class PlayerData {
         return flags;
     }
 
+    // TODO: simplify flag and session flag code by getting rid of basically-duplicate methods
+
     public void setFlag(String flag) {
         flags.put(flag, null);
         write();
@@ -71,12 +69,34 @@ public class PlayerData {
         write();
     }
 
+    public void setSessionFlag(String flag) {
+        sessionFlags.put(flag, null);
+        write();
+    }
+
+    public void setSessionFlag(String flag, String value) {
+        sessionFlags.put(flag, value);
+        write();
+    }
+
     public boolean containsFlag(String flag) {
         return flags.containsKey(flag);
     }
 
+    public boolean containsSessionFlag(String flag) {
+        return sessionFlags.containsKey(flag);
+    }
+
     public Optional<String> getFlagOrEmpty(String flag) {
         return Optional.ofNullable(flags.get(flag));
+    }
+
+    public Optional<String> getSessionFlagOrEmpty(String flag) {
+        return Optional.ofNullable(sessionFlags.get(flag));
+    }
+
+    public String getVersion() {
+        return version;
     }
 
     public int getCoins() {
