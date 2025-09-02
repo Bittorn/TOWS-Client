@@ -8,8 +8,9 @@
 		"Bittorn"
 	],
 	"contact": {
-		"issues": "https://github.com/Bittorn/TOWS-Client/issues",
-		"sources": "https://github.com/Bittorn/TOWS-Client"
+        "homepage": "https://windtempos.com/tows",
+        "issues": "https://github.com/Bittorn/TOWS-Client/issues",
+        "sources": "https://github.com/Bittorn/TOWS-Client"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/towsclient/icon.png",

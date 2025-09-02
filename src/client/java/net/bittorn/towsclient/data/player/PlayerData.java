@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @SuppressWarnings("unused")
 public class PlayerData {
+    @SuppressWarnings("FieldCanBeLocal")
     private final String version = "v0.0.2-alpha";
     private int coins = 50;
 
@@ -22,6 +23,7 @@ public class PlayerData {
     private transient Map<String, String> sessionFlags = Map.of();
 
     // TODO: move storage directory
+
     private static final File FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "towsclient.player.json");
 
     public static PlayerData read() {
