@@ -13,9 +13,13 @@ import java.util.Optional;
 
 @SuppressWarnings("unused")
 public class PlayerData {
+    private final String version = "v0.0.2-alpha";
+    private int coins = 50;
+
     @SuppressWarnings("FieldMayBeFinal")
     private Map<String, String> flags = Map.of();
-    private int coins = 50;
+    @SuppressWarnings("FieldMayBeFinal")
+    private transient Map<String, String> sessionFlags = Map.of();
 
     PlayerData() {
         // no-args constructor
