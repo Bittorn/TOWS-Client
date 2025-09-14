@@ -1,8 +1,10 @@
 {
-  "skyland": {
-    "startX": -16,
-    "startZ": -16,
-    "endX": 16,
-    "endZ": 16
+  "regions": {
+    "skyland": {
+      "startX": -16,
+      "startZ": -16,
+      "endX": 16,
+      "endZ": 16
+    }
   }
 }
