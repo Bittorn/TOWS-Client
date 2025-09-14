@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public class StoryRegistry {
 
     private static Map<Identifier, Story> entries = Map.of();

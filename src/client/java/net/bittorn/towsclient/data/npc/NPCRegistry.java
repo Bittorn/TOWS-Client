@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public class NPCRegistry {
     private static Map<Identifier, BasicNPCData> entries = Map.of();
 
