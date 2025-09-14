@@ -9,6 +9,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import org.lwjgl.glfw.GLFW;
 
 import java.io.File;
@@ -28,6 +29,15 @@ public class KeybindManager {
 
                     int interactionRange = 2;
                     assert client.player != null;
+
+                    BlockPos clientBlockPos = client.player.getBlockPos();
+
+                    // placeholder code for regions
+                    boolean isWithinRangeX = (clientBlockPos.getX() >= -16 && clientBlockPos.getX() <= 16);
+                    boolean isWithinRangeZ = (clientBlockPos.getZ() >= -16 && clientBlockPos.getZ() <= 16);
+                    if (!isWithinRangeX || !isWithinRangeZ) {
+                        return;
+                    }
 
                     if (client.player.getBlockPos().isWithinDistance(npc.getPosition(), interactionRange)) {
                         MinecraftClient.getInstance().setScreen(new DialogScreen(npc.getDialogId()));
