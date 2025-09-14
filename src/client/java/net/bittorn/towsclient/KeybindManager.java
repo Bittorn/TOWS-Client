@@ -11,6 +11,8 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
+import java.io.File;
+
 public class KeybindManager {
     public static void register() {
         KeyBinding interactBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.towsclient.interact", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, "key.category.towsclient"));
@@ -19,11 +21,17 @@ public class KeybindManager {
             while (interactBinding.wasPressed()) {
                 if (!TOWSClient.enabled) return;
 
-                Identifier npcId = Identifier.of(TOWSClient.MOD_ID, "placeholder_npc");
+                Identifier npcId = Identifier.of(TOWSClient.MOD_ID, "skyland" + File.separator + "placeholder_npc");
 
                 try {
                     BasicNPCData npc = NPCRegistry.getOrEmpty(npcId).orElseThrow();
-                    MinecraftClient.getInstance().setScreen(new DialogScreen(npc.getDialogId()));
+
+                    int interactionRange = 2;
+                    assert client.player != null;
+
+                    if (client.player.getBlockPos().isWithinDistance(npc.getPosition(), interactionRange)) {
+                        MinecraftClient.getInstance().setScreen(new DialogScreen(npc.getDialogId()));
+                    }
                 } catch (Exception e) {
                     TOWSClient.LOGGER.error("Error parsing NPC: {}", npcId, e);
                 }
