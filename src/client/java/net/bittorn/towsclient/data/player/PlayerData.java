@@ -14,7 +14,7 @@ import java.util.Optional;
 @SuppressWarnings("unused")
 public class PlayerData {
     @SuppressWarnings("FieldCanBeLocal")
-    private final String version = "v0.0.2-alpha";
+    private final String version = "1";
     private int coins = 50;
 
     @SuppressWarnings("FieldMayBeFinal")
