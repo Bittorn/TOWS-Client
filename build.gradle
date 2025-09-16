@@ -1,3 +1,4 @@
+//file:noinspection GroovyAssignabilityCheck
 plugins {
 	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
@@ -52,6 +53,9 @@ dependencies {
 
 	// CBOR
 	api "com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:${project.cbor_version}"
+
+	// Base58
+	implementation "io.github.novacrypto:Base58:${project.base58_version}@jar"
 
 	// Fabric API
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
