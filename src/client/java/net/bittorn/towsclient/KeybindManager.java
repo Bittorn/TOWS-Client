@@ -30,16 +30,16 @@ public class KeybindManager {
                     int interactionRange = 2;
                     assert client.player != null;
 
-                    BlockPos clientBlockPos = client.player.getBlockPos();
+                    BlockPos playerBlockPos = client.player.getBlockPos();
 
-                    // placeholder code for regions
-                    boolean isWithinRangeX = (clientBlockPos.getX() >= -16 && clientBlockPos.getX() <= 16);
-                    boolean isWithinRangeZ = (clientBlockPos.getZ() >= -16 && clientBlockPos.getZ() <= 16);
-                    if (!isWithinRangeX || !isWithinRangeZ) {
-                        return;
-                    }
+//                  // placeholder code for regions
+//                    boolean isWithinRangeX = (clientBlockPos.getX() >= -16 && clientBlockPos.getX() <= 16);
+//                    boolean isWithinRangeZ = (clientBlockPos.getZ() >= -16 && clientBlockPos.getZ() <= 16);
+//                    if (!isWithinRangeX || !isWithinRangeZ) {
+//                        return;
+//                    }
 
-                    if (client.player.getBlockPos().isWithinDistance(npc.getPosition(), interactionRange)) {
+                    if (playerBlockPos.isWithinDistance(npc.getPosition(), interactionRange)) {
                         MinecraftClient.getInstance().setScreen(new DialogScreen(npc.getDialogId()));
                     }
                 } catch (Exception e) {
