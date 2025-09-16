@@ -50,6 +50,8 @@ dependencies {
 	annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
 	include "io.wispforest:owo-sentinel:${project.owo_version}"
 
+	// CBOR
+	api "com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:${project.cbor_version}"
 
 	// Fabric API
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
