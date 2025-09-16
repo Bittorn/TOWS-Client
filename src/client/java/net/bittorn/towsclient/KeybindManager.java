@@ -27,7 +27,7 @@ public class KeybindManager {
                 try {
                     BasicNPCData npc = NPCRegistry.getOrEmpty(npcId).orElseThrow();
 
-                    int interactionRange = 2;
+                    int interactionRange = 4;
                     assert client.player != null;
 
                     BlockPos playerBlockPos = client.player.getBlockPos();

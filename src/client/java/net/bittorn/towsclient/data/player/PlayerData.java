@@ -1,10 +1,14 @@
 package net.bittorn.towsclient.data.player;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.cbor.databind.CBORMapper;
+import io.github.novacrypto.base58.Base58;
 import net.bittorn.towsclient.TOWSClient;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
@@ -30,10 +34,27 @@ public class PlayerData {
             return new PlayerData().write();
         }
 
+        byte[] data;
+
+        try (FileReader reader = new FileReader(FILE)) {
+            StringBuilder sb = new StringBuilder();
+            int i;
+
+            // Using read method
+            while ((i = reader.read()) != -1) {
+                sb.append((char)i);
+            }
+
+            data = Base58.base58Decode(sb.toString());
+        } catch (Exception e) {
+            TOWSClient.LOGGER.error("Error reading player data from disk", e);
+            throw new RuntimeException(e);
+        }
+
         try {
-            PlayerData data = cbor.readValue(FILE, PlayerData.class);
+            PlayerData playerData = cbor.readValue(data, PlayerData.class);
             TOWSClient.LOGGER.info("Successfully loaded player data from disk");
-            return data;
+            return playerData;
         } catch (Exception e) {
             TOWSClient.LOGGER.error("Error loading player data from disk", e);
             throw new RuntimeException(e);
@@ -41,8 +62,16 @@ public class PlayerData {
     }
 
     public PlayerData write() {
+        String data;
         try {
-            cbor.writerWithDefaultPrettyPrinter().writeValue(FILE, this);
+            data = Base58.base58Encode(cbor.writeValueAsBytes(this));
+        } catch (Exception e) {
+            TOWSClient.LOGGER.error("Error encoding player data", e);
+            throw new RuntimeException(e);
+        }
+
+        try (FileWriter writer = new FileWriter(FILE)) {
+            writer.write(data);
             TOWSClient.LOGGER.info("Successfully wrote player data to disk");
         } catch (Exception e) {
             TOWSClient.LOGGER.error("Error writing player data to disk", e);
