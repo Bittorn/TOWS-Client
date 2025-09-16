@@ -1,16 +1,10 @@
 package net.bittorn.towsclient.data.player;
 
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.dataformat.cbor.CBORReadContext;
 import com.fasterxml.jackson.dataformat.cbor.databind.CBORMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.stream.JsonWriter;
 import net.bittorn.towsclient.TOWSClient;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Optional;
 
@@ -97,8 +91,8 @@ public class PlayerData {
         return Optional.ofNullable(sessionFlags.get(flag));
     }
 
-    public String getVersion() {
-        return version;
+    public int getSchemaVersion() {
+        return schemaVersion;
     }
 
     public int getCoins() {
