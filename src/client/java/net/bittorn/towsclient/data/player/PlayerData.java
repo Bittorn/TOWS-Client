@@ -1,5 +1,8 @@
 package net.bittorn.towsclient.data.player;
 
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.dataformat.cbor.CBORReadContext;
+import com.fasterxml.jackson.dataformat.cbor.databind.CBORMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonWriter;
@@ -14,7 +17,7 @@ import java.util.Optional;
 @SuppressWarnings("unused")
 public class PlayerData {
     @SuppressWarnings("FieldCanBeLocal")
-    private final String version = "1";
+    private final int schemaVersion = 1;
     private int coins = 50;
 
     @SuppressWarnings("FieldMayBeFinal")
@@ -24,7 +27,8 @@ public class PlayerData {
 
     // TODO: move storage directory
 
-    private static final File FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "towsclient.player.json");
+    private static final File FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "towsclient.sav");
+    private static final CBORMapper cbor = new CBORMapper();
 
     public static PlayerData read() {
         if (!FILE.exists()) {
@@ -32,9 +36,10 @@ public class PlayerData {
             return new PlayerData().write();
         }
 
-        try (Reader reader = new FileReader(FILE, StandardCharsets.UTF_8)) {
+        try {
+            PlayerData data = cbor.readValue(FILE, PlayerData.class);
             TOWSClient.LOGGER.info("Successfully loaded player data from disk");
-            return new Gson().fromJson(reader, PlayerData.class);
+            return data;
         } catch (Exception e) {
             TOWSClient.LOGGER.error("Error loading player data from disk", e);
             throw new RuntimeException(e);
@@ -42,9 +47,8 @@ public class PlayerData {
     }
 
     public PlayerData write() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try (JsonWriter writer = gson.newJsonWriter(new FileWriter(FILE))) {
-            gson.toJson(gson.toJsonTree(this, PlayerData.class), writer);
+        try {
+            cbor.writeValue(FILE, this);
             TOWSClient.LOGGER.info("Successfully wrote player data to disk");
         } catch (Exception e) {
             TOWSClient.LOGGER.error("Error writing player data to disk", e);
