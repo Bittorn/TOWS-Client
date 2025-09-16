@@ -42,7 +42,7 @@ public class PlayerData {
 
     public PlayerData write() {
         try {
-            cbor.writeValue(FILE, this);
+            cbor.writerWithDefaultPrettyPrinter().writeValue(FILE, this);
             TOWSClient.LOGGER.info("Successfully wrote player data to disk");
         } catch (Exception e) {
             TOWSClient.LOGGER.error("Error writing player data to disk", e);
@@ -56,8 +56,6 @@ public class PlayerData {
     public Map<String, String> getFlags() {
         return flags;
     }
-
-    // TODO: simplify flag and session flag code by getting rid of basically-duplicate methods
 
     public void setFlag(String flag) {
         flags.put(flag, null);
