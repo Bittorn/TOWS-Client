@@ -1,11 +1,12 @@
 {
-	"required": true,
-	"package": "net.bittorn.towsclient.mixin.client",
-	"compatibilityLevel": "JAVA_21",
-	"client": [
-      "ClientWorldMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "net.bittorn.towsclient.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ClientWorldMixin",
+    "EntityRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

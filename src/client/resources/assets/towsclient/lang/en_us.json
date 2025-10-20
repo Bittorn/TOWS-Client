@@ -14,6 +14,8 @@
   "text.config.towsconfig.option.serverIP.tooltip": "Server IP address to be ran on\nUse '*' for wildcards/subdomains",
   "text.config.towsconfig.option.enableLocally": "Enable on local worlds",
   "text.config.towsconfig.option.enableLocally.tooltip": "Whether TOWSClient should be enabled on local worlds\nUseful for playing privately",
+  "text.config.towsconfig.option.debug": "Debug",
+  "text.config.towsconfig.option.debug.tooltip": "Whether to enable debug features",
 
   "key.category.towsclient": "Tales of Wayward Stars",
   "key.towsclient.interact": "Interact"
