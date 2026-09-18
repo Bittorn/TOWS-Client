@@ -41,4 +41,5 @@ replay_*.log
 
 # custom
 
+_old/
 .temp/

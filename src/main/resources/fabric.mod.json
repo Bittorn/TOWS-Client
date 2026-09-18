@@ -1,0 +1,36 @@
+{
+	"schemaVersion": 1,
+	"id": "tales-of-wayward-stars",
+	"version": "${version}",
+	"name": "Tales of Wayward Stars",
+	"description": "A client-side adventure mod.",
+	"authors": [
+		"Bittorn"
+	],
+	"contact": {
+		"homepage": "https://windtempos.com/tows",
+		"issues": "https://github.com/Bittorn/TOWS-Client/issues",
+		"sources": "https://github.com/Bittorn/TOWS-Client"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/tales-of-wayward-stars/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"client": [
+			{
+				"value": "com.windtempos.tows.TalesOfWaywardStars",
+				"adapter": "kotlin"
+			}
+		]
+	},
+	"mixins": [
+		"tales-of-wayward-stars.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.3",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	}
+}
