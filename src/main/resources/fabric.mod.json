@@ -14,11 +14,17 @@
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/tales-of-wayward-stars/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
 		"client": [
 			{
 				"value": "com.windtempos.tows.TalesOfWaywardStars",
+				"adapter": "kotlin"
+			}
+		],
+		"modmenu": [
+			{
+				"value": "com.windtempos.tows.api.ModMenuApiImpl",
 				"adapter": "kotlin"
 			}
 		]
@@ -32,5 +38,13 @@
 		"java": ">=21",
 		"fabric-api": "*",
 		"fabric-language-kotlin": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.gg/eYDzdQGdJ4"
+			},
+			"update_checker": false
+		}
 	}
 }
