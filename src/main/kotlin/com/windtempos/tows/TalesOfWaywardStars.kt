@@ -6,9 +6,14 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 object TalesOfWaywardStars : ClientModInitializer {
+
+	@JvmField
+	var enabled: Boolean = true
+
 	const val MOD_ID: String = "tales-of-wayward-stars"
 
-	private val LOGGER: Logger = LoggerFactory.getLogger(MOD_ID)
+	@JvmField
+	var LOGGER: Logger = LoggerFactory.getLogger(MOD_ID)
 
     override fun onInitializeClient() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
