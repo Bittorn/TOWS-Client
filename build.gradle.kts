@@ -13,9 +13,14 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 
-	maven {
+	// Mod Menu
+	maven("https://maven.terraformersmc.com/") {
 		name = "Terraformers"
-		url = uri("https://maven.terraformersmc.com/")
+	}
+
+	// YetAnotherConfigLib
+	maven("https://maven.isxander.dev/releases") {
+		name = "Xander Maven"
 	}
 }
 
@@ -31,6 +36,9 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${providers.gradleProperty("fabric_api_version").get()}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${providers.gradleProperty("fabric_kotlin_version").get()}")
+
+	// YetAnotherConfigLib
+	modImplementation("dev.isxander:yet-another-config-lib:${providers.gradleProperty("yacl_version").get()}")
 
 	// Mod Menu support
 	modImplementation("com.terraformersmc:modmenu:${providers.gradleProperty("modmenu_version").get()}")

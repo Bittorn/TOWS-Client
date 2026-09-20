@@ -1,5 +1,8 @@
 package com.windtempos.tows
 
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import net.fabricmc.api.ClientModInitializer
 import net.minecraft.resources.Identifier
 import org.slf4j.Logger
@@ -11,6 +14,10 @@ object TalesOfWaywardStars : ClientModInitializer {
 	var enabled: Boolean = true
 
 	const val MOD_ID: String = "tales-of-wayward-stars"
+	val builder: GsonBuilder =
+		GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+	val GSON: Gson = builder.setPrettyPrinting().create()
+	val GSON_MINIFIED: Gson = builder.create()
 
 	@JvmField
 	var LOGGER: Logger = LoggerFactory.getLogger(MOD_ID)
@@ -23,6 +30,7 @@ object TalesOfWaywardStars : ClientModInitializer {
 		LOGGER.info("Initializing client")
 	}
 
+	@Suppress("unused")
 	fun id(path: String): Identifier
 		= Identifier.fromNamespaceAndPath(MOD_ID, path)
 }
