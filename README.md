@@ -1,7 +1,18 @@
 # Tales of Wayward Stars Client
  Client mod for the Tales of Wayward Stars adventure experience.
 
+### Dependencies
+
+- fabric-loader 0.18.3 or above
+- yet_another_config_lib_v3 3.8.2 or above
+- fabric-language-kotlin 1.13.9+kotlin.2.3.10 or above
+
+Optional:
+- mod_menu 17.0.0 or above
+
 ## Development
+
+This project is currently being rewritten for Fabric 1.21.11
 
 ### Setup
 
