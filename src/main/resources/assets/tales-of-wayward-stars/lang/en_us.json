@@ -1,0 +1,9 @@
+{
+  "title.tales-of-wayward-stars": "Tales of Wayward Stars",
+
+  "config.tales-of-wayward-stars": "Tales of Wayward Stars Configuration",
+  "config.tales-of-wayward-stars.client": "Client",
+  "config.tales-of-wayward-stars.client.description": "Client Configuration Options",
+
+  "key.tales-of-wayward-stars.interact": "Interact with NPC"
+}

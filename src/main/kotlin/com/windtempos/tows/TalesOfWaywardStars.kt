@@ -3,6 +3,7 @@ package com.windtempos.tows
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.windtempos.tows.util.KeybindManager
 import net.fabricmc.api.ClientModInitializer
 import net.minecraft.resources.Identifier
 import org.slf4j.Logger
@@ -28,6 +29,8 @@ object TalesOfWaywardStars : ClientModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Initializing client")
+		KeybindManager.register()
+		LOGGER.info("Client initialized successfully")
 	}
 
 	@Suppress("unused")

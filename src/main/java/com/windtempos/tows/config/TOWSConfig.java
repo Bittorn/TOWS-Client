@@ -39,10 +39,10 @@ public class TOWSConfig {
         HANDLER.load();
         var config = HANDLER.instance();
         return YetAnotherConfigLib.createBuilder()
-                .title(Component.literal("Tales of Wayward Stars Configuration")) // used for narration
+                .title(Component.translatable("config.tales-of-wayward-stars")) // used for narration
                 .category(ConfigCategory.createBuilder()
-                        .name(Component.literal("Client")) // name of category
-                        .tooltip(Component.literal("Client configuration options")) // hover tooltip
+                        .name(Component.translatable("config.tales-of-wayward-stars.client")) // name of category
+                        .tooltip(Component.translatable("config.tales-of-wayward-stars.client.description")) // hover tooltip
                         .group(OptionGroup.createBuilder()
                                 .name(Component.literal("Connection")) // group name
                                 .description(OptionDescription.of(Component.literal("Connection options"))) // hover description, TODO
