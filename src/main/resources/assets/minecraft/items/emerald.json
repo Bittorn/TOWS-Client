@@ -1,0 +1,21 @@
+{
+    "model": {
+        "type": "minecraft:select",
+        "property": "minecraft:component",
+        "component": "minecraft:custom_name",
+        "cases": [
+            {
+                "when": "Coin",
+                "model": {
+                    "type": "minecraft:model",
+                    "model": "minecraft:custom/coin",
+                    "tints": []
+                }
+            }
+        ],
+        "fallback": {
+            "type": "minecraft:model",
+            "model": "minecraft:item/emerald"
+        }
+    }
+}

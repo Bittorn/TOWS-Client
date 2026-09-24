@@ -3,9 +3,9 @@ package com.windtempos.tows.util
 import com.windtempos.tows.data.PlayerData
 
 object GameManager {
-    var playerData: PlayerData = PlayerData.read()
+    var playerData: PlayerData = PlayerData()
 
     init {
-        // do something
+        playerData = playerData.read() // this is stupid and I hate it >:(
     }
 }

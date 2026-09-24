@@ -3,6 +3,7 @@
 package com.windtempos.tows.data
 
 import com.windtempos.tows.TalesOfWaywardStars.LOGGER
+import com.windtempos.tows.config.TOWSConfig
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
@@ -12,92 +13,75 @@ import kotlinx.serialization.decodeFromHexString
 import kotlinx.serialization.encodeToHexString
 import net.fabricmc.loader.api.FabricLoader
 import java.io.File
-import java.io.FileReader
-import java.io.FileWriter
 import java.io.IOException
-import kotlin.math.max
 
 @Serializable
-class PlayerData {
-    val schemaVersion = 1
-    var coins = 50
-        set(value) {
-            field = max(value, 0)
-            write()
-        }
-
-    val flags: MutableMap<String?, String?> = mutableMapOf()
-
+data class PlayerData(
+    var schemaVersion: Int = 1, var coins: Int = 50, var flags: MutableMap<String?, String?> = mutableMapOf()
+) {
     @Transient
     private val sessionFlags: MutableMap<String?, String?> = mutableMapOf()
 
-    companion object {
+    @Transient
+    private val file = File(FabricLoader.getInstance().configDir.toFile(), "tales-of-wayward-stars.sav")
 
-        @Transient
-        private val file = File(FabricLoader.getInstance().configDir.toFile(), "tales-of-wayward-stars.sav")
-
-        @OptIn(ExperimentalSerializationApi::class)
-        fun read(): PlayerData {
-            LOGGER.info("Reading player data")
-            if (!file.exists()) {
-                LOGGER.warn("Unable to find player data at path {}, assuming it doesn't exist", file.path)
-                write()
-                return PlayerData()
-            }
-
-            try {
-                FileReader(file).readLines()
-            } catch (e: Exception) {
-                LOGGER.error("Error reading player data from disk", e)
-                throw RuntimeException(e)
-            }
-
-            try {
-                val playerData: PlayerData = Cbor.decodeFromHexString(file.readText())
-                LOGGER.info("Successfully read player data from disk")
-                return playerData
-            } catch (e: Exception) {
-                when (e) {
-                    is SerializationException, is IllegalArgumentException -> {
-                        LOGGER.error("Player data is malformed", e)
-                    }
-
-                    is IOException -> {
-                        LOGGER.error("Player data could not be read", e)
-                    }
-
-                    else -> {
-                        LOGGER.error("Error reading player data from disk", e)
-                    }
-                }
-                throw e
-            }
+    @OptIn(ExperimentalSerializationApi::class)
+    fun read(): PlayerData {
+        LOGGER.info("Reading player data")
+        if (TOWSConfig.HANDLER.instance().ignoreSave) {
+            LOGGER.info("Ignoring save player data")
+            return PlayerData()
+        }
+        if (!file.exists()) {
+            LOGGER.warn("Unable to find player data at path {}, assuming it doesn't exist", file.path)
+            write()
+            return read()
+        } else {
+            LOGGER.info("Player data found at {}", file.path)
         }
 
-        @OptIn(ExperimentalSerializationApi::class)
-        fun write() {
-            LOGGER.info("Writing player data")
-            val data: String
-
-            try {
-                data = Cbor.encodeToHexString(this)
-            } catch (e: Exception) {
-                LOGGER.error("Error encoding player data", e)
-                throw e
-            }
-
-            try {
-                FileWriter(file).use { writer ->
-                    writer.write(data)
-                    LOGGER.info("Successfully wrote player data to disk")
+        try {
+            LOGGER.info("Decoding player data to object")
+            val playerData: PlayerData = Cbor.decodeFromHexString(file.readText())
+            LOGGER.info("Successfully read player data from disk")
+            return playerData
+        } catch (e: Exception) {
+            when (e) {
+                is SerializationException, is IllegalArgumentException -> {
+                    LOGGER.error("Player data is malformed", e)
                 }
-                file.writeText(data)
-            } catch (e: Exception) {
-                LOGGER.error("Error writing player data", e)
-                throw RuntimeException(e)
+
+                is IOException -> {
+                    LOGGER.error("Player data could not be read", e)
+                }
+
+                else -> {
+                    LOGGER.error("Error parsing player data", e)
+                }
             }
+            throw e
+        }
+    }
+
+    @OptIn(ExperimentalSerializationApi::class)
+    fun write() {
+        LOGGER.info("Writing player data")
+        val data: String
+
+        try {
+            data = Cbor.encodeToHexString(this)
+        } catch (e: Exception) {
+            LOGGER.error("Error encoding player data", e)
+            throw e
         }
 
+        try {
+            file.writeText(data)
+            LOGGER.info("Successfully wrote player data to disk")
+        } catch (e: Exception) {
+            LOGGER.error("Error writing player data", e)
+            throw RuntimeException(e)
+        }
     }
 
     //region TODO: refactor to Kotlin standards
@@ -135,6 +119,4 @@ class PlayerData {
     }
 
     //endregion
-
-
 }

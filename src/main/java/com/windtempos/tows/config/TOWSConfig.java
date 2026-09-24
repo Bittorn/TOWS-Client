@@ -35,6 +35,11 @@ public class TOWSConfig {
     public boolean forceEnabled = _forceEnabled;
     private static final boolean _forceEnabled = false;
 
+    // debug values
+    @SerialEntry
+    public boolean ignoreSave = _ignoreSave;
+    private static final boolean _ignoreSave = false;
+
     public Screen getConfigScreen(Screen previous) {
         HANDLER.load();
         var config = HANDLER.instance();
@@ -64,6 +69,16 @@ public class TOWSConfig {
                                         .binding(_forceEnabled, () -> config.forceEnabled, newVal -> config.forceEnabled = newVal)
                                         .controller(TickBoxControllerBuilder::create)
                                         .build())
+                                .build())
+                        .build())
+                .category(ConfigCategory.createBuilder()
+                        .name(Component.translatable("config.tales-of-wayward-stars.debug"))
+                        .tooltip(Component.translatable("config.tales-of-wayward-stars.debug.description"))
+                        .option(Option.<Boolean>createBuilder()
+                                .name(Component.translatable("config.tales-of-wayward-stars.ignore-save"))
+                                .description(OptionDescription.of(Component.translatable("config.tales-of-wayward-stars.ignore-save.description")))
+                                .binding(_ignoreSave, () -> config.ignoreSave, newVal -> config.ignoreSave = newVal)
+                                .controller(TickBoxControllerBuilder::create)
                                 .build())
                         .build())
                 .save(() -> HANDLER.save())

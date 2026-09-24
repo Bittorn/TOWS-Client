@@ -10,6 +10,10 @@
 Optional:
 - mod_menu 17.0.0 or above
 
+## Credit
+
+Some textures (namely the logo!) by [malcolmriley](https://github.com/malcolmriley/unused-textures), licensed under [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/).
+
 ## Development
 
 This project is currently being rewritten for Fabric 1.21.11

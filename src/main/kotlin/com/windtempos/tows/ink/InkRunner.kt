@@ -7,8 +7,9 @@ import net.minecraft.resources.Identifier
 
 class InkRunner(pathToStory: String) {
 
-    var story: Story? = null
-    var storyId: Identifier? = null
+    lateinit var story: Story
+
+    var storyId = Identifier.fromNamespaceAndPath(TalesOfWaywardStars.MOD_ID, pathToStory)
 
     var globalTags: HashMap<String?, String?> = HashMap()
 
@@ -19,8 +20,6 @@ class InkRunner(pathToStory: String) {
 
     init { // (pathToStory: String, screen: DialogScreen)
 //        dialogScreen = screen
-        storyId = Identifier.fromNamespaceAndPath(TalesOfWaywardStars.MOD_ID, pathToStory)
-
         // Creating Story object from JSON
         try {
 //            story = StoryRegistry.getOrEmpty(storyId).orElseThrow()

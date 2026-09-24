@@ -13,7 +13,12 @@
   "config.tales-of-wayward-stars.server-ip": "Server IP",
   "config.tales-of-wayward-stars.server-ip.description": "Server IP to match against. Use '*' to match against a range.",
   "config.tales-of-wayward-stars.force-enabled": "Force enabled",
-  "config.tales-of-wayward-stars.force-enabled.description": "Force enables the mod in all environments. Useful for debugging.",
+  "config.tales-of-wayward-stars.force-enabled.description": "Force enables the mod in all environments. Useful if something breaks",
+
+  "config.tales-of-wayward-stars.debug": "Debug",
+  "config.tales-of-wayward-stars.debug.description": "Debug options",
+  "config.tales-of-wayward-stars.ignore-save": "Ignore save",
+  "config.tales-of-wayward-stars.ignore-save.description": "Ignores values in player save data. Forces the mod to always return default values.",
 
   "key.tales-of-wayward-stars.interact": "Interact with NPC"
 }
