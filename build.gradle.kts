@@ -4,6 +4,8 @@ plugins {
 	id("net.fabricmc.fabric-loom-remap")
 	`maven-publish`
 	id("org.jetbrains.kotlin.jvm") version "2.4.20"
+
+	kotlin("plugin.serialization") version "2.4.20"
 }
 
 repositories {
@@ -42,6 +44,9 @@ dependencies {
 
 	// Mod Menu support
 	modImplementation("com.terraformersmc:modmenu:${providers.gradleProperty("modmenu_version").get()}")
+
+	// CBOR serialization, TODO: replace with custom serializer
+	implementation("org.jetbrains.kotlinx:kotlinx-serialization-cbor:1.11.0")
 }
 
 tasks.processResources {
