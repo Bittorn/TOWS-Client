@@ -1,5 +1,5 @@
-# Tales of Wayward Stars Client
- Client mod for the Tales of Wayward Stars adventure experience.
+# Tales of Wayward Stars
+A client-side adventure/RPG mod for Minecraft 1.21.11.
 
 ### Dependencies
 
