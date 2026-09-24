@@ -23,15 +23,15 @@ public class TOWSConfig {
                     .build())
             .build();
 
-    @SerialEntry(comment = "Whether to enable the mod on singleplayer worlds")
+    @SerialEntry
     public boolean enableInSingleplayer = _enableInSingleplayer;
     private static final boolean _enableInSingleplayer = true;
 
-    @SerialEntry(comment = "Server IP to match against")
+    @SerialEntry
     public String serverIP = _serverIP;
     private static final String _serverIP = "*.callmecarson.live";
 
-    @SerialEntry
+    @SerialEntry(comment = "Useful for testing")
     public boolean forceEnabled = _forceEnabled;
     private static final boolean _forceEnabled = false;
 
@@ -41,26 +41,26 @@ public class TOWSConfig {
         return YetAnotherConfigLib.createBuilder()
                 .title(Component.translatable("config.tales-of-wayward-stars")) // used for narration
                 .category(ConfigCategory.createBuilder()
-                        .name(Component.translatable("config.tales-of-wayward-stars.client")) // name of category
-                        .tooltip(Component.translatable("config.tales-of-wayward-stars.client.description")) // hover tooltip
+                        .name(Component.translatable("config.tales-of-wayward-stars.client"))
+                        .tooltip(Component.translatable("config.tales-of-wayward-stars.client.description"))
                         .group(OptionGroup.createBuilder()
-                                .name(Component.literal("Connection")) // group name
-                                .description(OptionDescription.of(Component.literal("Connection options"))) // hover description, TODO
+                                .name(Component.translatable("config.tales-of-wayward-stars.connection"))
+                                .description(OptionDescription.of(Component.translatable("config.tales-of-wayward-stars.connection.description")))
                                 .option(Option.<Boolean>createBuilder()
-                                        .name(Component.literal("Enable in singleplayer"))
-                                        .description(OptionDescription.of(Component.literal("Whether to enable the mod in singleplayer worlds.")))
+                                        .name(Component.translatable("config.tales-of-wayward-stars.enable-in-singleplayer"))
+                                        .description(OptionDescription.of(Component.translatable("config.tales-of-wayward-stars.enable-in-singleplayer.description")))
                                         .binding(_enableInSingleplayer, () -> config.enableInSingleplayer, newVal -> config.enableInSingleplayer = newVal)
                                         .controller(TickBoxControllerBuilder::create)
                                         .build())
                                 .option(Option.<String>createBuilder()
-                                        .name(Component.literal("Server IP"))
-                                        .description(OptionDescription.of(Component.literal("Server IP to match against. Use '*' to match against a range.")))
+                                        .name(Component.translatable("config.tales-of-wayward-stars.server-ip"))
+                                        .description(OptionDescription.of(Component.translatable("config.tales-of-wayward-stars.server-ip.description")))
                                         .binding(_serverIP, () -> config.serverIP, newVal -> config.serverIP = newVal)
                                         .controller(StringControllerBuilder::create)
                                         .build())
                                 .option(Option.<Boolean>createBuilder()
-                                        .name(Component.literal("Force enable"))
-                                        .description(OptionDescription.of(Component.literal("Force enables the mod in all environments. Useful for debugging.")))
+                                        .name(Component.translatable("config.tales-of-wayward-stars.force-enabled"))
+                                        .description(OptionDescription.of(Component.translatable("config.tales-of-wayward-stars.force-enabled.description")))
                                         .binding(_forceEnabled, () -> config.forceEnabled, newVal -> config.forceEnabled = newVal)
                                         .controller(TickBoxControllerBuilder::create)
                                         .build())

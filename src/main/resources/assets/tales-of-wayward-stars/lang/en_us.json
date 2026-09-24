@@ -5,5 +5,15 @@
   "config.tales-of-wayward-stars.client": "Client",
   "config.tales-of-wayward-stars.client.description": "Client Configuration Options",
 
+  "config.tales-of-wayward-stars.connection": "Connection",
+  "config.tales-of-wayward-stars.connection.description": "Connection options",
+
+  "config.tales-of-wayward-stars.enable-in-singleplayer": "Enable in singleplayer",
+  "config.tales-of-wayward-stars.enable-in-singleplayer.description": "Whether to enable the mod in singleplayer worlds.",
+  "config.tales-of-wayward-stars.server-ip": "Server IP",
+  "config.tales-of-wayward-stars.server-ip.description": "Server IP to match against. Use '*' to match against a range.",
+  "config.tales-of-wayward-stars.force-enabled": "Force enabled",
+  "config.tales-of-wayward-stars.force-enabled.description": "Force enables the mod in all environments. Useful for debugging.",
+
   "key.tales-of-wayward-stars.interact": "Interact with NPC"
 }

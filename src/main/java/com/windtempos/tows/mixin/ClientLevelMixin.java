@@ -1,6 +1,7 @@
 package com.windtempos.tows.mixin;
 
 import com.windtempos.tows.TalesOfWaywardStars;
+import com.windtempos.tows.config.TOWSConfig;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.renderer.LevelRenderer;
@@ -12,6 +13,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.net.SocketAddress;
+
+import static com.windtempos.tows.TalesOfWaywardStars.LOGGER;
+import static com.windtempos.tows.TalesOfWaywardStars.enabled;
 
 @Mixin(ClientLevel.class)
 public class ClientLevelMixin {
@@ -30,25 +34,37 @@ public class ClientLevelMixin {
             int k,
             CallbackInfo ci
     ) {
-        SocketAddress newAddress = clientPacketListener.getConnection().getRemoteAddress();
+        SocketAddress socketAddress = clientPacketListener.getConnection().getRemoteAddress();
 
-//        String regexConvert = TOWSClient.CONFIG.serverIP()
-//                .replaceAll("\\.", "\\.")
-//                .replace("*", "\\S+");
-//        String REGEX = regexConvert + "\\S*";
-        String REGEX = "\\S+\\.callmecarson\\.live\\S*";
+        String regexConvert = TOWSConfig.HANDLER.instance().serverIP
+                .replaceAll("\\.", ".")
+                .replace("*", "\\S+");
+        String REGEX = regexConvert + "\\S*";
 
-        boolean isMatch = newAddress.toString().matches(REGEX);
-        boolean isLocal = newAddress.toString().matches("local\\S*");
+        boolean isMatch = socketAddress.toString().matches(REGEX);
+        boolean isLocal = socketAddress.toString().matches("local\\S*");
 
-        String ipMatch = isLocal ? "Server is local" : "IP " + ((isMatch) ? "matches" : "does not match");
-
-        TalesOfWaywardStars.LOGGER.info(ipMatch);
-
-        //if (isMatch || (isLocal && TOWSClient.CONFIG.enableLocally())) TOWSClient.enabled = true;
-        //if (!TOWSClient.CONFIG.enabled()) TOWSClient.enabled = false;
-
-        if (isMatch) TalesOfWaywardStars.enabled = true;
-        if (isLocal) TalesOfWaywardStars.enabled = true;
+        if (TOWSConfig.HANDLER.instance().forceEnabled) {
+            if (isLocal) {
+                LOGGER.info("Forcing enabled for singleplayer world");
+            } else {
+                LOGGER.info("Forcing enabled for server IP {}", socketAddress);
+            }
+            enabled = true;
+        } else if (isLocal) {
+            if (TOWSConfig.HANDLER.instance().enableInSingleplayer) {
+                LOGGER.info("Server is local, enabling for singleplayer world");
+                enabled = true;
+            } else {
+                LOGGER.info("Server is local, disabling for singleplayer world");
+                enabled = false;
+            }
+        } else if (isMatch) {
+            LOGGER.info("Server IP {} is a match for regex {}, enabling", socketAddress, REGEX);
+            enabled = true;
+        } else {
+            LOGGER.info("Server IP {} is not a match for regex {}, disabling", socketAddress, REGEX);
+            enabled = false;
+        }
     }
 }
