@@ -35,7 +35,7 @@ class InkRunner(pathToStory: String) {
 
     private fun loadTags() {
         try {
-            val tags = story!!.globalTags
+            val tags = story.globalTags
             for (tag in tags) {
                 val splitTag: Array<String?> = tag.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 globalTags[splitTag[0]!!.trim { it <= ' ' }] = splitTag[1]!!.trim { it <= ' ' }
@@ -52,7 +52,7 @@ class InkRunner(pathToStory: String) {
 
     fun selectChoice(index: Int) {
         try {
-            story!!.chooseChoiceIndex(index)
+            story.chooseChoiceIndex(index)
             // Needed twice to skip the repeating of your choice
             // Yes it's stupid, but it works, so it's not stupid
             continueOrExitStory()
@@ -65,16 +65,16 @@ class InkRunner(pathToStory: String) {
 
     fun continueOrExitStory() {
         try {
-            if (story!!.canContinue()) {
-                line = Component.translatable(story!!.Continue().trim { it <= ' ' })
-                if (story!!.getCurrentChoices().isNotEmpty()) {
+            if (story.canContinue()) {
+                line = Component.translatable(story.Continue().trim { it <= ' ' })
+                if (story.getCurrentChoices().isNotEmpty()) {
                     val choices = HashMap<Int?, String?>()
-                    for (choice in story!!.getCurrentChoices()) {
+                    for (choice in story.getCurrentChoices()) {
                         choices[choice.index] = choice.text.trim { it <= ' ' }
                     }
 //                    dialogScreen.setChoices(choices)
                 }
-            } else if (story!!.getCurrentChoices().isEmpty()) {
+            } else if (story.getCurrentChoices().isEmpty()) {
                 exitStory()
             }
         } catch (e: Exception) {

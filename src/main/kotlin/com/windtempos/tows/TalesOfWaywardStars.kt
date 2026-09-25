@@ -2,6 +2,7 @@ package com.windtempos.tows
 
 import com.windtempos.tows.config.TOWSConfig
 import com.windtempos.tows.hud.HudRenderer
+import com.windtempos.tows.render.NPCRenderer
 import com.windtempos.tows.util.KeybindManager
 import net.fabricmc.api.ClientModInitializer
 import net.minecraft.resources.Identifier
@@ -27,6 +28,7 @@ object TalesOfWaywardStars : ClientModInitializer {
 		LOGGER.info("Loaded configuration")
 		KeybindManager.register()
 		HudRenderer.register()
+		NPCRenderer.register()
 		LOGGER.info("Client initialized successfully")
 	}
 

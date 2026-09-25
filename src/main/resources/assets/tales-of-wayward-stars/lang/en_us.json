@@ -2,12 +2,12 @@
   "title.tales-of-wayward-stars": "Tales of Wayward Stars",
 
   "config.tales-of-wayward-stars": "Tales of Wayward Stars Configuration",
+
   "config.tales-of-wayward-stars.client": "Client",
-  "config.tales-of-wayward-stars.client.description": "Client Configuration Options",
+  "config.tales-of-wayward-stars.client.description": "Client configuration options",
 
   "config.tales-of-wayward-stars.connection": "Connection",
   "config.tales-of-wayward-stars.connection.description": "Connection options",
-
   "config.tales-of-wayward-stars.enable-in-singleplayer": "Enable in singleplayer",
   "config.tales-of-wayward-stars.enable-in-singleplayer.description": "Whether to enable the mod in singleplayer worlds.",
   "config.tales-of-wayward-stars.server-ip": "Server IP",
